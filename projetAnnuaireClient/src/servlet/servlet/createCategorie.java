@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.AnnuaireProxy;
+
 /**
  * Servlet implementation class createCategorie
  */
@@ -36,6 +38,14 @@ public class createCategorie extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String nouvelleCat = (String) request.getParameter("nomCat");
+		AnnuaireProxy myProxy = new AnnuaireProxy();
+
+		// Requete le webservice pour ajouter une catégorie
+		myProxy.createCategory(nouvelleCat);
+
+		
 		doGet(request, response);
 	}
 

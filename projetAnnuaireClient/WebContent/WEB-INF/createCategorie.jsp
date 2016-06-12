@@ -6,7 +6,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-coucou !
-</body>
+<body>   
+
+ <fieldset>
+        <form method="post" action="createCategorie">
+                <legend>Bienvenue dans la gestion de l'annuaire</legend>
+                <p>Voici vos actions possibles:  </p>
+
+                           <label for="nomCat">Nom Pour Votre Categorie</label>
+                <input type="text" id="nomCat" name="nomCat" value="" size="20" maxlength="20" />
+                <br />
+                <br />
+
+                <input type="submit" value="creerCategorie" class="sansLabel" />
+                <br />
+                
+                <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
+                
+        </form>
+        
+        </fieldset>
+        
+        </body>
 </html>
