@@ -10,7 +10,7 @@
  </head>
     <body>
     <fieldset>
-        <form method="get" action="CreateCategorie">
+        <form method="get" action="createCategorie">
                 <legend>Bienvenue dans la gestion de l'annuaire</legend>
                 <p>Voici vos actions possibles:  </p>
 
@@ -23,7 +23,7 @@
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
                 
         </form>
-        <form method="get" action="CreateAnnonce">
+        <form method="get" action="createAnnonce">
              
                 <br />
 
