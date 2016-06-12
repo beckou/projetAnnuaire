@@ -5,14 +5,14 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>firstPage</title>
+        <title>firstPageAnnuaire</title>
 		<link type="text/css" rel="stylesheet" href="<c:url value="/inc/form.css"/>" />   
  </head>
     <body>
     <fieldset>
         <form method="get" action="CreateCategorie">
                 <legend>Bienvenue dans la gestion de l'annuaire</legend>
-                <p>Voici vos actions possibles: </p>
+                <p>Voici vos actions possibles:  </p>
 
            
                 <br />
