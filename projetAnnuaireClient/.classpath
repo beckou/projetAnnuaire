@@ -13,5 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/AnnuaireSR03Client/.settings"/>
+	<classpathentry kind="lib" path="/AnnuaireSR03Client/build"/>
+	<classpathentry kind="lib" path="/AnnuaireSR03Client/WebContent"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
