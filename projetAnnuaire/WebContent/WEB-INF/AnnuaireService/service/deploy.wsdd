@@ -14,7 +14,10 @@
         <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:val1" type="tns:int"/>
         <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:val2" type="tns:int"/>
       </operation>
-      <parameter name="allowedMethods" value="add"/>
+      <operation xmlns:operNS="http://service" name="createCategory" qname="operNS:createCategory" soapAction="">
+        <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:newCategory" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="add createCategory"/>
 
   </service>
 </deployment>

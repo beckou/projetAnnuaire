@@ -73,6 +73,15 @@ case 13:
         <%= tempResultreturnp14 %>
         <%
 break;
+case 20:
+        gotMethod = true;
+        String newCategory_3id=  request.getParameter("newCategory23");
+            java.lang.String newCategory_3idTemp = null;
+        if(!newCategory_3id.equals("")){
+         newCategory_3idTemp  = newCategory_3id;
+        }
+        sampleAnnuaireProxyid.createCategory(newCategory_3idTemp);
+break;
 }
 } catch (Exception e) { 
 %>

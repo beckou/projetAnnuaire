@@ -9,4 +9,5 @@ package service;
 
 public interface Annuaire extends java.rmi.Remote {
     public int add(int val1, int val2) throws java.rmi.RemoteException;
+    public void createCategory(java.lang.String newCategory) throws java.rmi.RemoteException;
 }

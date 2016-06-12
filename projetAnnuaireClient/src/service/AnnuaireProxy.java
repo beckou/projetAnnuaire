@@ -50,5 +50,11 @@ public class AnnuaireProxy implements service.Annuaire {
     return annuaire.add(val1, val2);
   }
   
+  public void createCategory(java.lang.String newCategory) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    annuaire.createCategory(newCategory);
+  }
+  
   
 }
