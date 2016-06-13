@@ -15,6 +15,9 @@ public interface CategorieDao {
 	
 	Categorie trouver( Integer id ) throws DAOException;
 
+	
+	Categorie trouverByNom( String nom ) throws DAOException;
+
 	List<Categorie> viewAllCategorie();
 
 	

@@ -16,7 +16,7 @@
                 <br />
 			
  				 <input type="radio" name="rechercheType" value="adresse" checked> Adresse<br>
-				 <input type="radio" name="rechercheType" value="catégorie"> Catégorie<br>
+				 <input type="radio" name="rechercheType" value="categorie"> Catégorie<br>
 				 <input type="radio" name="rechercheType" value="nom"> Nom<br>
 				 
 				 <br />

@@ -4,6 +4,30 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="createCategory">
+    <complexType>
+     <sequence>
+      <element name="newCategory" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategoryResponse">
+    <complexType/>
+   </element>
+   <element name="getCategorieByString">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCategorieByStringResponse">
+    <complexType>
+     <sequence>
+      <element name="getCategorieByStringReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="delCategorie">
     <complexType>
      <sequence>
@@ -12,6 +36,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
    <element name="delCategorieResponse">
+    <complexType/>
+   </element>
+   <element name="modifyCategorie">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+      <element name="nouveau_nom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyCategorieResponse">
     <complexType/>
    </element>
    <element name="viewAllCategories">
@@ -38,27 +73,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="createCategory">
-    <complexType>
-     <sequence>
-      <element name="newCategory" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="createCategoryResponse">
-    <complexType/>
-   </element>
-   <element name="modifyCategorie">
-    <complexType>
-     <sequence>
-      <element name="categorie_id" type="xsd:int"/>
-      <element name="nouveau_nom" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="modifyCategorieResponse">
-    <complexType/>
-   </element>
    <element name="add">
     <complexType>
      <sequence>
@@ -76,6 +90,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="getCategorieRequest">
+
+      <wsdl:part element="impl:getCategorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCategorieResponse">
+
+      <wsdl:part element="impl:getCategorieResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyCategorieRequest">
+
+      <wsdl:part element="impl:modifyCategorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="createCategoryRequest">
 
@@ -109,14 +147,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getCategorieRequest">
-
-      <wsdl:part element="impl:getCategorie" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="addRequest">
 
       <wsdl:part element="impl:add" name="parameters">
@@ -128,14 +158,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="modifyCategorieResponse">
 
       <wsdl:part element="impl:modifyCategorieResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="getCategorieResponse">
-
-      <wsdl:part element="impl:getCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -157,9 +179,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="modifyCategorieRequest">
+   <wsdl:message name="getCategorieByStringResponse">
 
-      <wsdl:part element="impl:modifyCategorie" name="parameters">
+      <wsdl:part element="impl:getCategorieByStringResponse" name="parameters">
 
       </wsdl:part>
 
@@ -173,7 +195,39 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getCategorieByStringRequest">
+
+      <wsdl:part element="impl:getCategorieByString" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="Annuaire">
+
+      <wsdl:operation name="createCategory">
+
+         <wsdl:input message="impl:createCategoryRequest" name="createCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createCategoryResponse" name="createCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorieByString">
+
+         <wsdl:input message="impl:getCategorieByStringRequest" name="getCategorieByStringRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCategorieByStringResponse" name="getCategorieByStringResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="delCategorie">
 
@@ -182,6 +236,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:delCategorieResponse" name="delCategorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyCategorie">
+
+         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
 
        </wsdl:output>
 
@@ -211,30 +277,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="createCategory">
-
-         <wsdl:input message="impl:createCategoryRequest" name="createCategoryRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:createCategoryResponse" name="createCategoryResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="modifyCategorie">
-
-         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="add">
 
          <wsdl:input message="impl:addRequest" name="addRequest">
@@ -253,6 +295,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
+      <wsdl:operation name="createCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorieByString">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCategorieByStringRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCategorieByStringResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="delCategorie">
 
          <wsdlsoap:operation soapAction=""/>
@@ -264,6 +342,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="delCategorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyCategorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyCategorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -300,42 +396,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getCategorieResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="createCategory">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="createCategoryRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="createCategoryResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="modifyCategorie">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="modifyCategorieRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="modifyCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 

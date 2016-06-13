@@ -26,6 +26,8 @@ public class CategorieDaoImpl implements CategorieDao{
     private static final String SQL_DELETE_PAR_NOM = "DELETE FROM Categorie WHERE idCategorie = ?";
     private static final String SQL_MODIFIER_PAR_NOM = "UPDATE Categorie SET nomCategorie = ? WHERE idCategorie = ?  ";
     private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM Categorie WHERE idCategorie = ?";
+    private static final String SQL_SELECT_PAR_NOMB = "SELECT * FROM Categorie WHERE nomCategorie = ?";
+
     private static final String SQL_SELECT_GENERAL = "SELECT * FROM Categorie";
 
 	private DAOFactory daoFactory;
@@ -194,5 +196,35 @@ public class CategorieDaoImpl implements CategorieDao{
  	    
  	    return list;
 	}
+
+	@Override
+	public Categorie trouverByNom(String nom) throws DAOException {
+		
+	 	 Connection connexion = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    Categorie categorie = null;
+
+	    try {
+	        /* Récupération d'une connexion depuis la Factory */
+	        connexion = (Connection) daoFactory.getConnection();
+	        preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_NOMB, false, nom );
+	        resultSet = preparedStatement.executeQuery();
+	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	        if ( resultSet.next() ) {
+	        	// ligne sûrement à décommenter plus tard
+	        	
+	            categorie = map( resultSet );
+	            
+	            
+	        }
+	    } catch ( SQLException e ) {
+	        throw new DAOException( e );
+	    } finally {
+	        fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+	    }
+
+	    return categorie;
+			}
 
 }

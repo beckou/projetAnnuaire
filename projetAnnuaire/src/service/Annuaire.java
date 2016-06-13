@@ -50,6 +50,30 @@ public class Annuaire {
 
 	}
 
+	public String getCategorieByString(String categorie_id) throws JAXBException {
+
+		Categorie categorie = categorieDAO.trouverByNom(categorie_id);
+
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(Categorie.class);
+			java.io.StringWriter sw = new StringWriter();
+
+			javax.xml.bind.Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+			marshaller.marshal(categorie, sw);
+
+			return sw.toString();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "false";
+
+	}
+	
+	
 	
 	public void createCategory(String newCategory){
 		// create new categorie
@@ -97,6 +121,7 @@ public class Annuaire {
 
 		return "false";
 }
+	
 	
 	
 	
