@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AnnuaireService WSDL service -->
+
+  <service name="Annuaire" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service"/>
+      <parameter name="wsdlServiceElement" value="AnnuaireService"/>
+      <parameter name="schemaQualified" value="http://service"/>
+      <parameter name="wsdlServicePort" value="Annuaire"/>
+      <parameter name="className" value="service.AnnuaireSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Annuaire"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="delCategorie" qname="operNS:delCategorie" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:categorie_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="viewAllCategories" qname="operNS:viewAllCategories" xmlns:operNS="http://service" returnQName="retNS:viewAllCategoriesReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getCategorie" qname="operNS:getCategorie" xmlns:operNS="http://service" returnQName="retNS:getCategorieReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:categorie_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createCategory" qname="operNS:createCategory" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:newCategory" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="modifyCategorie" qname="operNS:modifyCategorie" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:categorie_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nouveau_nom" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="add" qname="operNS:add" xmlns:operNS="http://service" returnQName="retNS:addReturn" xmlns:retNS="http://service" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:val1" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:val2" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="add getCategorie modifyCategorie createCategory viewAllCategories delCategorie"/>
+
+  </service>
+</deployment>

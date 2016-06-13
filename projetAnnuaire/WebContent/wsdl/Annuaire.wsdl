@@ -4,6 +4,61 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="delCategorie">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="delCategorieResponse">
+    <complexType/>
+   </element>
+   <element name="viewAllCategories">
+    <complexType/>
+   </element>
+   <element name="viewAllCategoriesResponse">
+    <complexType>
+     <sequence>
+      <element name="viewAllCategoriesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCategorie">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCategorieResponse">
+    <complexType>
+     <sequence>
+      <element name="getCategorieReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategory">
+    <complexType>
+     <sequence>
+      <element name="newCategory" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategoryResponse">
+    <complexType/>
+   </element>
+   <element name="modifyCategorie">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+      <element name="nouveau_nom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyCategorieResponse">
+    <complexType/>
+   </element>
    <element name="add">
     <complexType>
      <sequence>
@@ -19,18 +74,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="createCategory">
-    <complexType>
-     <sequence>
-      <element name="newCategory" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="createCategoryResponse">
-    <complexType/>
-   </element>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="createCategoryRequest">
+
+      <wsdl:part element="impl:createCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="addResponse">
 
@@ -40,9 +93,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="createCategoryRequest">
+   <wsdl:message name="delCategorieResponse">
 
-      <wsdl:part element="impl:createCategory" name="parameters">
+      <wsdl:part element="impl:delCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -56,6 +109,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getCategorieRequest">
+
+      <wsdl:part element="impl:getCategorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="addRequest">
 
       <wsdl:part element="impl:add" name="parameters">
@@ -64,15 +125,87 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="modifyCategorieResponse">
+
+      <wsdl:part element="impl:modifyCategorieResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCategorieResponse">
+
+      <wsdl:part element="impl:getCategorieResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="viewAllCategoriesRequest">
+
+      <wsdl:part element="impl:viewAllCategories" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="delCategorieRequest">
+
+      <wsdl:part element="impl:delCategorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyCategorieRequest">
+
+      <wsdl:part element="impl:modifyCategorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="viewAllCategoriesResponse">
+
+      <wsdl:part element="impl:viewAllCategoriesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="Annuaire">
 
-      <wsdl:operation name="add">
+      <wsdl:operation name="delCategorie">
 
-         <wsdl:input message="impl:addRequest" name="addRequest">
+         <wsdl:input message="impl:delCategorieRequest" name="delCategorieRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:addResponse" name="addResponse">
+         <wsdl:output message="impl:delCategorieResponse" name="delCategorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewAllCategories">
+
+         <wsdl:input message="impl:viewAllCategoriesRequest" name="viewAllCategoriesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewAllCategoriesResponse" name="viewAllCategoriesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorie">
+
+         <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCategorieResponse" name="getCategorieResponse">
 
        </wsdl:output>
 
@@ -90,23 +223,83 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="modifyCategorie">
+
+         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add">
+
+         <wsdl:input message="impl:addRequest" name="addRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addResponse" name="addResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="AnnuaireSoapBinding" type="impl:Annuaire">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="add">
+      <wsdl:operation name="delCategorie">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="addRequest">
+         <wsdl:input name="delCategorieRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="addResponse">
+         <wsdl:output name="delCategorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewAllCategories">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewAllCategoriesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewAllCategoriesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCategorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -125,6 +318,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="createCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyCategorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyCategorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyCategorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addResponse">
 
             <wsdlsoap:body use="literal"/>
 

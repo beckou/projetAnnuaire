@@ -44,16 +44,40 @@ public class AnnuaireProxy implements service.Annuaire {
     return annuaire;
   }
   
-  public int add(int val1, int val2) throws java.rmi.RemoteException{
+  public void delCategorie(int categorie_id) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    return annuaire.add(val1, val2);
+    annuaire.delCategorie(categorie_id);
+  }
+  
+  public java.lang.String viewAllCategories() throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.viewAllCategories();
+  }
+  
+  public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.getCategorie(categorie_id);
   }
   
   public void createCategory(java.lang.String newCategory) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
     annuaire.createCategory(newCategory);
+  }
+  
+  public int add(int val1, int val2) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.add(val1, val2);
+  }
+  
+  public void modifyCategorie(int categorie_id, java.lang.String nouveau_nom) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    annuaire.modifyCategorie(categorie_id, nouveau_nom);
   }
   
   

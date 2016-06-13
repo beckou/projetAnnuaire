@@ -6,10 +6,13 @@ import static dao.DAOUtilitaire.initialisationRequetePreparee;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+
 import dao.DAOFactory;
 
 import dao.DAOException;
@@ -20,12 +23,10 @@ public class CategorieDaoImpl implements CategorieDao{
 
 	
     private static final String SQL_INSERT = "INSERT INTO Categorie (idCategorie, nomCategorie) VALUES (?, ?)";
-    private static final String SQL_DELETE_PAR_NOM = "DELETE FROM Categorie WHERE nomCategorie = ?";
-    private static final String SQL_MODIFIER_PAR_NOM = "UPDATE Categorie SET nomCategorie = ? WHERE nomCategorie = ?  ";
-    private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM Categorie WHERE nomCategorie = ?";
-    private static final String SQL_DELETE_PAR_ID = "DELETE FROM Categorie WHERE idCategorie = ?";
-    private static final String SQL_MODIFIER_PAR_ID = "UPDATE Categorie SET nomCategorie = ? WHERE idCategorie = ?  ";
-    private static final String SQL_SELECT_PAR_ID = "SELECT * FROM Categorie WHERE idCategorie = ?";
+    private static final String SQL_DELETE_PAR_NOM = "DELETE FROM Categorie WHERE idCategorie = ?";
+    private static final String SQL_MODIFIER_PAR_NOM = "UPDATE Categorie SET nomCategorie = ? WHERE idCategorie = ?  ";
+    private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM Categorie WHERE idCategorie = ?";
+    private static final String SQL_SELECT_GENERAL = "SELECT * FROM Categorie";
 
 	private DAOFactory daoFactory;
  //   private static final String SQL_INSERT = "INSERT INTO Answers (idAnswer,  idQuest, intitule, status) VALUES (?, ?, ?, ?)";
@@ -67,14 +68,14 @@ public class CategorieDaoImpl implements CategorieDao{
 	}
 
 	@Override
-	public void modifier(String nom,String nouveauNom) throws DAOException {
+	public void modifier(Integer id,String nouveauNom) throws DAOException {
 		// TODO Auto-generated method stub
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connexion = (Connection) daoFactory.getConnection();
-            preparedStatement = initialisationRequetePreparee( connexion, SQL_MODIFIER_PAR_NOM, true,nouveauNom,nom );
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_MODIFIER_PAR_NOM, true,nouveauNom,id );
             int statut = preparedStatement.executeUpdate();
             if ( statut == 0 ) {
                 throw new DAOException( "Échec de la suppression du client, aucune ligne supprimée de la table." );
@@ -89,14 +90,14 @@ public class CategorieDaoImpl implements CategorieDao{
 	}
 
 	@Override
-	public void supprimer(String nom) throws DAOException {
+	public void supprimer(Integer id) throws DAOException {
 		// TODO Auto-generated method stub
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connexion = (Connection) daoFactory.getConnection();
-            preparedStatement = initialisationRequetePreparee( connexion, SQL_DELETE_PAR_NOM, true,nom );
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_DELETE_PAR_NOM, true,id );
             int statut = preparedStatement.executeUpdate();
             if ( statut == 0 ) {
                 throw new DAOException( "Échec de la suppression du client, aucune ligne supprimée de la table." );
@@ -111,7 +112,7 @@ public class CategorieDaoImpl implements CategorieDao{
 	}
 
 	@Override
-	public Categorie trouver(String nomCategorie) throws DAOException {
+	public Categorie trouver(Integer idCategorie) throws DAOException {
 		// TODO Auto-generated method stub
 		
 	 	 Connection connexion = null;
@@ -122,7 +123,7 @@ public class CategorieDaoImpl implements CategorieDao{
  	    try {
  	        /* Récupération d'une connexion depuis la Factory */
  	        connexion = (Connection) daoFactory.getConnection();
- 	        preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_NOM, false, nomCategorie );
+ 	        preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_NOM, false, idCategorie );
  	        resultSet = preparedStatement.executeQuery();
  	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
  	        if ( resultSet.next() ) {
@@ -144,10 +145,54 @@ public class CategorieDaoImpl implements CategorieDao{
 
 	
 	private static Categorie map( ResultSet resultSet ) throws SQLException {
-	    Categorie cat = new Categorie();
+	    Categorie cat = new Categorie(0,"lambda");
 	    cat.setId( resultSet.getLong( "idCategorie" ) );
 	    cat.setName( resultSet.getString( "nomCategorie" ) );	    
 	    return cat;
+	}
+
+	@Override
+	public List<Categorie> viewAllCategorie() {
+		Connection connexion = null;
+ 	    PreparedStatement preparedStatement = null;
+ 	    ResultSet resultSet = null;
+
+ 	   List<Categorie> list = new ArrayList<Categorie>();
+ 	  Categorie cat = null; 
+
+       Statement stmt = null;
+       
+
+ 	 
+       String query = "select SQL_CALC_FOUND_ROWS * from Categorie";
+    		   try {
+    	  connexion = (Connection) daoFactory.getConnection();
+           stmt = (Statement) connexion.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+        	  cat = map( rs );
+	          list.add(cat);
+          }
+          rs.close();
+           
+          rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }finally
+      {
+          try {
+              if(stmt != null)
+                  stmt.close();
+              if(connexion != null)
+            	  connexion.close();
+              } catch (SQLException e) {
+              e.printStackTrace();
+          }
+      }
+ 	    
+ 	    
+ 	    return list;
 	}
 
 }
