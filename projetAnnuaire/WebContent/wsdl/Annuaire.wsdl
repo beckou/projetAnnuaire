@@ -4,15 +4,20 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="createCategory">
+   <element name="add">
     <complexType>
      <sequence>
-      <element name="newCategory" type="xsd:string"/>
+      <element name="val1" type="xsd:int"/>
+      <element name="val2" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
-   <element name="createCategoryResponse">
-    <complexType/>
+   <element name="addResponse">
+    <complexType>
+     <sequence>
+      <element name="addReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
    </element>
    <element name="getCategorieByString">
     <complexType>
@@ -27,6 +32,26 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
       <element name="getCategorieByStringReturn" type="xsd:string"/>
      </sequence>
     </complexType>
+   </element>
+   <element name="viewAllCategories">
+    <complexType/>
+   </element>
+   <element name="viewAllCategoriesResponse">
+    <complexType>
+     <sequence>
+      <element name="viewAllCategoriesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategory">
+    <complexType>
+     <sequence>
+      <element name="newCategory" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createCategoryResponse">
+    <complexType/>
    </element>
    <element name="delCategorie">
     <complexType>
@@ -49,16 +74,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="modifyCategorieResponse">
     <complexType/>
    </element>
-   <element name="viewAllCategories">
-    <complexType/>
-   </element>
-   <element name="viewAllCategoriesResponse">
-    <complexType>
-     <sequence>
-      <element name="viewAllCategoriesReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="getCategorie">
     <complexType>
      <sequence>
@@ -70,21 +85,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="getCategorieReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="add">
-    <complexType>
-     <sequence>
-      <element name="val1" type="xsd:int"/>
-      <element name="val2" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addResponse">
-    <complexType>
-     <sequence>
-      <element name="addReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -115,17 +115,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="createCategoryRequest">
+   <wsdl:message name="addResponse">
 
-      <wsdl:part element="impl:createCategory" name="parameters">
+      <wsdl:part element="impl:addResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addResponse">
+   <wsdl:message name="createCategoryRequest">
 
-      <wsdl:part element="impl:addResponse" name="parameters">
+      <wsdl:part element="impl:createCategory" name="parameters">
 
       </wsdl:part>
 
@@ -205,13 +205,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="Annuaire">
 
-      <wsdl:operation name="createCategory">
+      <wsdl:operation name="add">
 
-         <wsdl:input message="impl:createCategoryRequest" name="createCategoryRequest">
+         <wsdl:input message="impl:addRequest" name="addRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:createCategoryResponse" name="createCategoryResponse">
+         <wsdl:output message="impl:addResponse" name="addResponse">
 
        </wsdl:output>
 
@@ -224,6 +224,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:getCategorieByStringResponse" name="getCategorieByStringResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewAllCategories">
+
+         <wsdl:input message="impl:viewAllCategoriesRequest" name="viewAllCategoriesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewAllCategoriesResponse" name="viewAllCategoriesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createCategory">
+
+         <wsdl:input message="impl:createCategoryRequest" name="createCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createCategoryResponse" name="createCategoryResponse">
 
        </wsdl:output>
 
@@ -253,18 +277,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllCategories">
-
-         <wsdl:input message="impl:viewAllCategoriesRequest" name="viewAllCategoriesRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:viewAllCategoriesResponse" name="viewAllCategoriesResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getCategorie">
 
          <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
@@ -277,35 +289,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="add">
-
-         <wsdl:input message="impl:addRequest" name="addRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addResponse" name="addResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
    </wsdl:portType>
 
    <wsdl:binding name="AnnuaireSoapBinding" type="impl:Annuaire">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="createCategory">
+      <wsdl:operation name="add">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="createCategoryRequest">
+         <wsdl:input name="addRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="createCategoryResponse">
+         <wsdl:output name="addResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -324,6 +324,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getCategorieByStringResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewAllCategories">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewAllCategoriesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewAllCategoriesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createCategoryResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -367,24 +403,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllCategories">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="viewAllCategoriesRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="viewAllCategoriesResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getCategorie">
 
          <wsdlsoap:operation soapAction=""/>
@@ -396,24 +414,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getCategorieResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="add">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addResponse">
 
             <wsdlsoap:body use="literal"/>
 

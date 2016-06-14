@@ -2,7 +2,6 @@
     <wb-module deploy-name="projetAnnuaireClient">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/servlet"/>
         <property name="context-root" value="projetAnnuaireClient"/>
         <property name="java-output-path" value="/projetAnnuaireClient/build/classes"/>
     </wb-module>

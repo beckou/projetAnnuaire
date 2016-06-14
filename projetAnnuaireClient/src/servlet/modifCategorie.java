@@ -1,10 +1,7 @@
-package servlet;
+package serv;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,61 +12,47 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.sun.xml.internal.txw2.Document;
-
-import beans.Categorie;
 import service.AnnuaireProxy;
 
 /**
  * Servlet implementation class createCategorie
  */
-@WebServlet("/gestionCategorie")
-public class gestionCategorie extends HttpServlet {
+@WebServlet("/modifCategorie")
+public class modifCategorie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public static final String VUE              = "/WEB-INF/gestionCategorie.jsp";
+    public static final String VUE              = "/WEB-INF/modifCategorie.jsp";
+    public static final String VUE2              = "/WEB-INF/gestionCategorie.jsp";
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public gestionCategorie() {
+    public modifCategorie() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Récupère les champs pouvant avoir été modifiés
-		Integer idCat =  Integer.parseInt(request.getParameter("questID"));
-		AnnuaireProxy myProxy = new AnnuaireProxy();
-
-		// Requete le webservice pour ajouter une catégorie
-		myProxy.delCategorie(idCat);
-
-		// Récupère toutes les catégories pour les afficher
-		doGet(request, response);
-}
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     
-		
+		// TODO Auto-generated method stub
 		AnnuaireProxy myProxy = new AnnuaireProxy();
 
-	 // ICI A CHANGER, LA FONCTION POUR LISTER TOUTES LES CATEGORIES
-	 	String ListeCategories = myProxy.viewAllCategories();
-		
-		
-	
-		List<Categorie> tabCat = new ArrayList<Categorie>();
+		int intIdCat = Integer.parseInt(request.getParameter("questID"));
 
+		// A MODIFIER QUAND ON A LA FONCTION
+		 String categorie_XML = myProxy.getCategorie(intIdCat);
+
+		String category_name = null;
+		int category_id = 0;
+		// Traitement XML de la chaine reçu (une categorie)
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = null;
 
@@ -81,51 +64,57 @@ public class gestionCategorie extends HttpServlet {
 		}
 		InputSource is = new InputSource();
 		
-		
-		// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
-		
-	 	is.setCharacterStream(new StringReader(ListeCategories));
+		// A MODIFIER QUAND ON A LA FONCTION !! 
+		  is.setCharacterStream(new StringReader(categorie_XML));
 
-		org.w3c.dom.Document doc;
+		Document doc;
 		try {
 			doc = db.parse(is);
-
-			
+			System.out.println("teeest " + doc);
 			NodeList nList = doc.getElementsByTagName("categorie");
 			System.out.println(nList.getLength());
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
 				Node nNode = nList.item(temp);
-				
+
 				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
-					System.out.println("Categorie id : " + eElement.getAttribute("id"));
-					System.out.println("Categorie id : " + eElement.getAttribute("name"));
-					tabCat.add(new Categorie(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name")));
+
+					category_id = Integer.parseInt(eElement.getAttribute("id"));
+					category_name = eElement.getAttribute("name");
 
 				}
-
 			}
-
-			for (int i =0 ; i < tabCat.size(); i++){
-				
-				System.out.println("tabcat:"+ tabCat.get(i).getName() +  tabCat.get(i).getId() );
-
-			}
-			
-			request.setAttribute("listeCat", tabCat);
-			this.getServletContext().getRequestDispatcher(VUE).forward(request, response);	
-
-			
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		// Envoie le nom et l'id à la JSP à la JSP
+		request.setAttribute("IdCat", category_id);
+		request.setAttribute("NomCat", category_name);
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		Integer idCat =  Integer.parseInt(request.getParameter("idCat"));
+		String nomCat = request.getParameter("nomCat");
+		
+		AnnuaireProxy myProxy = new AnnuaireProxy();
+		
+		myProxy.modifyCategorie(idCat, nomCat);
+		
+		
+		this.getServletContext().getRequestDispatcher(VUE2).forward(request, response);
+	}
+
 }

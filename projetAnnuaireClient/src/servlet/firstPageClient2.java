@@ -1,4 +1,4 @@
-package servlet;
+package serv;
 
 import java.io.IOException;
 import java.io.StringReader;

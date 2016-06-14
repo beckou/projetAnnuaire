@@ -1,4 +1,6 @@
-<%@page contentType="text/html;charset=UTF-8"%><HTML>
+<%@page contentType="text/html;charset=UTF-8"%>
+<HTML>
+
 <HEAD>
 <TITLE>Web Services Test Client</TITLE>
 </HEAD>
