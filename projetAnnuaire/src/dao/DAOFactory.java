@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
 public class DAOFactory {
 
     private static final String FICHIER_PROPERTIES       = "dao/dao.properties";
@@ -95,6 +94,13 @@ public class DAOFactory {
    return new CategorieDaoImpl( this );
 }
 
+   public AdresseDao getAdresseDao() {
+   return new AdresseDaoImpl( this );
+}
+   
+   public AnnonceDao getAnnonceDao() {
+   return new AnnonceDaoImpl( this );
+} 
 //public AnnonceDao getAnnonceDao() {
 //	// TODO Auto-generated method stub
 //	   return new AnnonceDaoImpl( this );

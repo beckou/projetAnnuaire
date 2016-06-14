@@ -2,9 +2,12 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
 
 import beans.Addresse;
 import beans.Annonce;
@@ -18,12 +21,13 @@ public class AnnonceDaoImpl implements AnnonceDao{
 
 	
 	private DAOFactory daoFactory;
-    private static final String SQL_INSERT = "INSERT INTO Annonce (idAnnonce, nomAnnonce, telephone, idAdresse) VALUES (?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO Annonce (idAnnonce, idCategorie, nomAnnonce, telephone, idAdresse) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_DELETE_PAR_ID = "DELETE FROM Annonce WHERE idAnnonce = ?";
-    private static final String SQL_SELECT_PAR_CATEGORIE = "SELECT * FROM Annonce WHERE idCategorie = ?";
-    private static final String SQL_SELECT_PAR_ADRESSE = "SELECT * FROM Annonce WHERE idAdresse = ?";
+    private static final String SQL_SELECT_PAR_CATEGORIE = "SELECT SQL_CALC_FOUND_ROWS * FROM Annonce WHERE idCategorie = ?";
+    private static final String SQL_SELECT_PAR_ADRESSE = "SELECT SQL_CALC_FOUND_ROWS * FROM Annonce WHERE idAdresse = ?";
     private static final String SQL_MODIFY = "UPDATE Annonce SET nomAnnonce = ? telephone = ? WHERE idAnnonce = ?  ";
-    
+    private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM Annonce WHERE idAnnonce = ?";
+
 //	idAnnonce
 //	idCategorie
 //	nomAnnonce
@@ -50,7 +54,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
             /* Récupération d'une connexion depuis la Factory */
             connexion = (Connection) daoFactory.getConnection();      // (idAnnonce,   nomAnnonce, telephone, idAdresse) VALUES (?, ?, ?, ?, ?)";
 
-            preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT, true, annonce.getId(), annonce.getName(),annonce.getTel(), annonce.getIdAdresse() );
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT, true, annonce.getId(),annonce.getCategory(), annonce.getName(),annonce.getTel(), annonce.getIdAdresse() );
             int statut = preparedStatement.executeUpdate();
             /* Analyse du statut retourné par la requête d'insertion */   
             if ( statut == 0 ) {
@@ -75,7 +79,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
 	}
 
 	@Override
-	public void modifier(Long AnnonceId, String name, String tel) throws DAOException {
+	public void modifier(long AnnonceId, String name, String tel) throws DAOException {
 		// TODO Auto-generated method stub
 		
 		
@@ -101,7 +105,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
 	}
 
 	@Override
-	public void supprimer(Long id) throws DAOException {
+	public void supprimer(long id) throws DAOException {
 		// TODO Auto-generated method stub
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
@@ -153,13 +157,227 @@ public class AnnonceDaoImpl implements AnnonceDao{
 	private static Annonce map( ResultSet resultSet ) throws SQLException {
 	    Annonce annonce = new Annonce();
 	    annonce.setId( resultSet.getLong( "idAnnonce" ) );
+	    annonce.setCategory(resultSet.getLong( "idCategorie" ) );
 	    annonce.setName(resultSet.getString( "nomAnnonce" ));
 	    annonce.setTel(resultSet.getString( "telephone" )); 
-
+	    annonce.setIdAdresse(resultSet.getLong( "idAdresse" ));
 	    return annonce;
 	}
 
+
+	@Override
+	public List<Annonce> viewAllAnnonce() {
+		Connection connexion = null;
+ 	    PreparedStatement preparedStatement = null;
+ 	    ResultSet resultSet = null;
+
+ 	   List<Annonce> list = new ArrayList<Annonce>();
+ 	  Annonce cat = null; 
+
+       Statement stmt = null;
+       
+
+ 	 
+       String query = "select SQL_CALC_FOUND_ROWS * from Annonce";
+    		   try {
+    	  connexion = (Connection) daoFactory.getConnection();
+           stmt = (Statement) connexion.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+        	  cat = map( rs );
+	          list.add(cat);
+          }
+          rs.close();
+           
+          rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }finally
+      {
+          try {
+              if(stmt != null)
+                  stmt.close();
+              if(connexion != null)
+            	  connexion.close();
+              } catch (SQLException e) {
+              e.printStackTrace();
+          }
+      }
+ 	    
+ 	    
+ 	    return list;
+	}
+
+
+	@Override
+	public List<Annonce> viewAllAnnonceByCat(long idCat) {
+		Connection connexion = null;
+ 	    PreparedStatement preparedStatement = null;
+ 	    ResultSet resultSet = null;
+
+
+ 	   List<Annonce> list = new ArrayList<Annonce>();
+ 	  Annonce cat = null; 
+
+       Statement stmt = null;
+       
+       System.out.println("Servlet Parcours");
+
+       String query = "select SQL_CALC_FOUND_ROWS * from Annonce WHERE idCategorie ="+ idCat;
+      try {
+    	  connexion = (Connection) daoFactory.getConnection();
+           stmt = (Statement) connexion.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+	    	  cat = map( rs );
+	          list.add(cat);
+          }
+          rs.close();
+          rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }finally
+      {
+          try {
+              if(stmt != null)
+                  stmt.close();
+              if(connexion != null)
+            	  connexion.close();
+              } catch (SQLException e) {
+              e.printStackTrace();
+          }
+      }
+ 	    
+ 	    
+ 	    return list;
+	}
+
+
+	@Override
+	public List<Annonce> viewAllAnnonceByAdr(long idAdr) {
+		Connection connexion = null;
+ 	    PreparedStatement preparedStatement = null;
+ 	    ResultSet resultSet = null;
+
+
+ 	   List<Annonce> list = new ArrayList<Annonce>();
+ 	  Annonce cat = null; 
+
+       Statement stmt = null;
+       
+       System.out.println("Servlet Parcours");
+
+       String query = "select SQL_CALC_FOUND_ROWS * from Annonce WHERE idAdresse ="+ idAdr;
+      try {
+    	  connexion = (Connection) daoFactory.getConnection();
+           stmt = (Statement) connexion.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+	    	  cat = map( rs );
+	          list.add(cat);
+          }
+          rs.close();
+          rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }finally
+      {
+          try {
+              if(stmt != null)
+                  stmt.close();
+              if(connexion != null)
+            	  connexion.close();
+              } catch (SQLException e) {
+              e.printStackTrace();
+          }
+      }
+ 	    
+ 	    
+ 	    return list;
+	}
+
+
 	
 	
+	@Override
+	public Annonce trouver(Integer id_Annonce) throws DAOException {
+		 Connection connexion = null;
+	 	    PreparedStatement preparedStatement = null;
+	 	    ResultSet resultSet = null;
+	 	    Annonce annonce = null;
+
+	 	    try {
+	 	        /* Récupération d'une connexion depuis la Factory */
+	 	        connexion = (Connection) daoFactory.getConnection();
+	 	        preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_NOM, false, id_Annonce );
+	 	        resultSet = preparedStatement.executeQuery();
+	 	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	 	        if ( resultSet.next() ) {
+	 	        	// ligne sûrement à décommenter plus tard
+	 	        	
+	 	            annonce = map( resultSet );
+	 	            
+	 	            
+	 	        }
+	 	    } catch ( SQLException e ) {
+	 	        throw new DAOException( e );
+	 	    } finally {
+	 	        fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+	 	    }
+
+	 	    return annonce;
+	}
+
+
+	@Override
+	public List<Annonce> viewAllAnnonceByNom(String nomAnn) {
+		Connection connexion = null;
+ 	    PreparedStatement preparedStatement = null;
+ 	    ResultSet resultSet = null;
+
+
+ 	   List<Annonce> list = new ArrayList<Annonce>();
+ 	  Annonce cat = null; 
+
+       Statement stmt = null;
+       
+
+       String query = "select SQL_CALC_FOUND_ROWS * from Annonce WHERE nomAnnonce = '"+ nomAnn + "'";
+      try {
+    	  connexion = (Connection) daoFactory.getConnection();
+           stmt = (Statement) connexion.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+	    	  cat = map( rs );
+	          list.add(cat);
+          }
+          rs.close();
+          rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+
+      } catch (SQLException e) {
+          e.printStackTrace();
+      }finally
+      {
+          try {
+              if(stmt != null)
+                  stmt.close();
+              if(connexion != null)
+            	  connexion.close();
+              } catch (SQLException e) {
+              e.printStackTrace();
+          }
+      }
+ 	    
+ 	    
+ 	    return list;
+	}	
 	
 }
+
+	
+	
+	
+

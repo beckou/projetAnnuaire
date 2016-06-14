@@ -20,6 +20,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import beans.Addresse;
+import beans.Annonce;
 import beans.Categorie;
 import service.AnnuaireProxy;
 
@@ -43,8 +45,192 @@ public class firstPageClient2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		
+		
+		
+
+		AnnuaireProxy myProxy = new AnnuaireProxy();
+
+	 // ICI A CHANGER, LA FONCTION POUR LISTER TOUTES LES CATEGORIES
+	 	String ListeCategories = myProxy.viewAllCategories();
+		
+		
+	
+		List<Categorie> tabCat = new ArrayList<Categorie>();
+
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = null;
+
+		try {
+			db = dbf.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		InputSource is = new InputSource();
+		
+		
+		// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+		
+	 	is.setCharacterStream(new StringReader(ListeCategories));
+
+		org.w3c.dom.Document doc;
+		try {
+			doc = db.parse(is);
+
+			
+			NodeList nList = doc.getElementsByTagName("categorie");
+			System.out.println(nList.getLength());
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+				
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+					System.out.println("Categorie id : " + eElement.getAttribute("id"));
+					System.out.println("Categorie id : " + eElement.getAttribute("name"));
+					tabCat.add(new Categorie(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name")));
+
+				}
+
+			}
+
+			for (int i =0 ; i < tabCat.size(); i++){
+				
+				System.out.println("tabcat:"+ tabCat.get(i).getName() +  tabCat.get(i).getId() );
+
+			}
+			
+			request.setAttribute("listeCat", tabCat);
+
+			
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+	 	String ListeAnnonces = myProxy.viewAllAnnonce();
+
+
+		List<Annonce> tabAnn = new ArrayList<Annonce>();
+
+		 dbf = DocumentBuilderFactory.newInstance();
+		 db = null;
+
+		try {
+			db = dbf.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 is = new InputSource();
+		
+		
+		// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+		
+	 	is.setCharacterStream(new StringReader(ListeAnnonces));
+
+		try {
+			doc = db.parse(is);
+
+			
+			NodeList nList = doc.getElementsByTagName("annonce");
+			System.out.println(nList.getLength());
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+				
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+					tabAnn.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel")));
+
+				}
+
+			}
+
+			for (int i =0 ; i < tabAnn.size(); i++){
+				
+				System.out.println("tabcat:"+ tabAnn.get(i).getName() +  tabAnn.get(i).getId() );
+
+			}
+			
+			request.setAttribute("listeAnn", tabAnn);
+
+			
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	 	String ListeAdresses = myProxy.viewAllAdresse();
+
+
+		List<Addresse> tabAdr = new ArrayList<Addresse>();
+
+		 dbf = DocumentBuilderFactory.newInstance();
+		 db = null;
+
+		try {
+			db = dbf.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 is = new InputSource();
+		
+		
+		// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+		
+	 	is.setCharacterStream(new StringReader(ListeAdresses));
+
+		try {
+			doc = db.parse(is);
+
+			
+			NodeList nList = doc.getElementsByTagName("adresse");
+			System.out.println(nList.getLength());
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+
+				Node nNode = nList.item(temp);
+				
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					Element eElement = (Element) nNode;
+					tabAdr.add(new Addresse(Integer.parseInt(eElement.getAttribute("idAdresse")), eElement.getAttribute("rue"),eElement.getAttribute("ville"),eElement.getAttribute("cp")));
+
+				}
+
+			}
+
+			
+			request.setAttribute("listeAdr", tabAdr);
+
+			
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);	
+
+	
 	}
 
 	/**
@@ -54,20 +240,85 @@ public class firstPageClient2 extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String TypeRecherche = (String) request.getParameter("rechercheType");
-		String ValeurDonnee = (String) request.getParameter("recherche");
-		Categorie catt = new Categorie(0,"new");
 		AnnuaireProxy myProxy = new AnnuaireProxy();
 
 		// Requete le webservice pour ajouter une catégorie
+		System.out.println("TROUVE TAB : "+ TypeRecherche);
 
-		if(TypeRecherche == "adresse")
-		
+		if(TypeRecherche.equals("nom")){
+			String nom = (String) request.getParameter("Nom");
+			System.out.println("nom : " +nom );
+		 	String ListeAnnoncesNom = myProxy.viewAllAnnonceByNom(nom);
+
+
 			
-		if(TypeRecherche == "categorie"){
-			String cat = myProxy.getCategorieByString(ValeurDonnee);
+			List<Annonce> tabCat = new ArrayList<Annonce>();
 
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = null;
+
+			try {
+				db = dbf.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			InputSource is = new InputSource();
+
+			
+			// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+			
+		 	is.setCharacterStream(new StringReader(ListeAnnoncesNom));
+
+			org.w3c.dom.Document doc;
+			try {
+				doc = db.parse(is);
+
+				
+				NodeList nList = doc.getElementsByTagName("annonce");
+
+				for (int temp = 0; temp < nList.getLength(); temp++) {
+
+					Node nNode = nList.item(temp);
+					
+					System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+						Element eElement = (Element) nNode;
+						tabCat.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel")));
+
+
+					}
+
+				}
+				System.out.println("TROUVE TAB : "+ tabCat);
+
+				request.setAttribute("listeAnn", tabCat);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);	
+
+				
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			
+			
+			
+		}
+		}
+			
+		if(TypeRecherche.equals("categorie")){
+
+			Categorie catt = new Categorie(0,"new");
+			String ValeurDonnee = (String) request.getParameter("Categorie");
+
+			String cat = myProxy.getCategorieByString(ValeurDonnee);
+			System.out.println("TROUVE TAB : "+ ValeurDonnee);
+
+
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = null;
+
 
 			try {
 				db = dbf.newDocumentBuilder();
@@ -88,7 +339,6 @@ public class firstPageClient2 extends HttpServlet {
 
 				
 				NodeList nList = doc.getElementsByTagName("categorie");
-				System.out.println(nList.getLength());
 
 				for (int temp = 0; temp < nList.getLength(); temp++) {
 
@@ -99,8 +349,6 @@ public class firstPageClient2 extends HttpServlet {
 					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 						Element eElement = (Element) nNode;
-						System.out.println("Categorie id : " + eElement.getAttribute("id"));
-						System.out.println("Categorie id : " + eElement.getAttribute("name"));
 					    catt.setId(Integer.parseInt(eElement.getAttribute("id")));
 					    catt.setName( eElement.getAttribute("name"));
 					}
@@ -114,29 +362,139 @@ public class firstPageClient2 extends HttpServlet {
 				
 				
 				
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+		 	String ListeAnnonces = myProxy.viewAllAnnonceByCat(catt.getId());
+
+
+			
+			List<Annonce> tabCat = new ArrayList<Annonce>();
+
+			 dbf = DocumentBuilderFactory.newInstance();
+			 db = null;
+
+			try {
+				db = dbf.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 is = new InputSource();
+			
+			
+			// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+			
+		 	is.setCharacterStream(new StringReader(ListeAnnonces));
+
+			try {
+				doc = db.parse(is);
+
 				
+				NodeList nList = doc.getElementsByTagName("annonce");
+				System.out.println(nList.getLength());
+
+				for (int temp = 0; temp < nList.getLength(); temp++) {
+
+					Node nNode = nList.item(temp);
+					
+					System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+						Element eElement = (Element) nNode;
+						tabCat.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel")));
+
+					}
+
+				}
+
+				for (int i =0 ; i < tabCat.size(); i++){
+					
+					System.out.println("tabcat:"+ tabCat.get(i).getName() +  tabCat.get(i).getId() );
+
+				}
+				
+				request.setAttribute("listeAnn", tabCat);
+				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);	
+				
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+	
+	}
+		
+			
+		if(TypeRecherche.equals("adresse")){
+			Integer idAdr = Integer.parseInt(request.getParameter("Adresse"));
+			System.out.println("nom : " +idAdr );
+		 	String ListeAnnoncesNom = myProxy.viewAllAnnonceByAdr(idAdr);
+
+
+			
+			List<Annonce> tabCat = new ArrayList<Annonce>();
+
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = null;
+
+			try {
+				db = dbf.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			InputSource is = new InputSource();
+
+			
+			// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+			
+		 	is.setCharacterStream(new StringReader(ListeAnnoncesNom));
+
+			org.w3c.dom.Document doc;
+			try {
+				doc = db.parse(is);
+
+				
+				NodeList nList = doc.getElementsByTagName("annonce");
+
+				for (int temp = 0; temp < nList.getLength(); temp++) {
+
+					Node nNode = nList.item(temp);
+					
+					System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+						Element eElement = (Element) nNode;
+						tabCat.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel")));
+
+
+					}
+
+				}
+				System.out.println("TROUVE TAB : "+ tabCat);
+
+				request.setAttribute("listeAnn", tabCat);
 				this.getServletContext().getRequestDispatcher(VUE).forward(request, response);	
 
 				
 			} catch (SAXException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-
-
-		
-		
-	
-	
-	}
-		
-			
-		if(TypeRecherche == "nom")
-	
 			
 			
 			
-		doGet(request, response);
+		}
+			
+		}
+			
+			
+			
 	}
 
 }

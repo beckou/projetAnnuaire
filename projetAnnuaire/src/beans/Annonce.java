@@ -1,9 +1,13 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Annonce {
 	private Long id;
 	private String name;
-	private String category;
+	private long category;
 	private Long idAdresse;
 	private String tel;
 	
@@ -14,19 +18,27 @@ public class Annonce {
 		
 	}
 
+	public Annonce(int i, int j, String string2, int k, String string4) {
+this.id = (long) i;
+this.name = string2;
+this.category = j;
+this.idAdresse= (long) k;
+this.tel = string4;
+}
+
 	public String getName() {
 		return name;
 	}
-
+	@XmlAttribute
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getCategory() {
+	public long getCategory() {
 		return category;
 	}
-
-	public void setCategory(String category) {
+	@XmlAttribute
+	public void setCategory(long category) {
 		this.category = category;
 	}
 
@@ -34,7 +46,7 @@ public class Annonce {
 	public String getTel() {
 		return tel;
 	}
-
+	@XmlAttribute
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
@@ -42,7 +54,7 @@ public class Annonce {
 	public Long getId() {
 		return id;
 	}
-
+	@XmlAttribute
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -50,7 +62,7 @@ public class Annonce {
 	public Long getIdAdresse() {
 		return idAdresse;
 	}
-
+	@XmlAttribute
 	public void setIdAdresse(Long idAdresse) {
 		this.idAdresse = idAdresse;
 	}
