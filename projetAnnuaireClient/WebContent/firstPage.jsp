@@ -10,24 +10,24 @@
  </head>
     <body>
     <fieldset>
-        <form method="get" action="createCategorie">
+        <form method="get" action="gestionCategorie">
                 <legend>Bienvenue dans la gestion de l'annuaire</legend>
                 <p>Voici vos actions possibles:  </p>
 
            
                 <br />
 
-                <input type="submit" value="Créer une catégorie" class="sansLabel" />
+                <input type="submit" value="Gérer les catégories" class="sansLabel" />
                 <br />
                 
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
                 
         </form>
-        <form method="get" action="createAnnonce">
+        <form method="get" action="gestionAnnonce">
              
                 <br />
 
-                <input type="submit" value="Créer une annonce" class="sansLabel" />
+                <input type="submit" value="Gérer les annonces" class="sansLabel" />
                 <br />
                 
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
