@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import service.AnnuaireProxy;
 public class createCategorie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public static final String VUE              = "/WEB-INF/createCategorie.jsp";
+    public static final String VUE2              = "/WEB-INF/gestionCategorie.jsp";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,9 +47,15 @@ public class createCategorie extends HttpServlet {
 
 		// Requete le webservice pour ajouter une catégorie
 		myProxy.createCategory(nouvelleCat);
+		
+		     
+       String destinationBlockAccount  ="./gestionCategorie";
+       response.sendRedirect(response.encodeRedirectURL(destinationBlockAccount));
+       
+
 
 		
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }
