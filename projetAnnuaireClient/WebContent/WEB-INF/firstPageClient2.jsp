@@ -22,8 +22,9 @@
 				 <input type="radio" name="rechercheType" onclick="handleClick(this)" value="nom"> Nom<br>
 				 
                 <br />
+                
+                
                 <div id="mySelectCategorie">
-                	hahahaha
                                 <SELECT name="Categorie" maxlength="20">
        				 <c:forEach var="categorie" items="${listeCat}">
 
@@ -31,7 +32,7 @@
 
         				</c:forEach>
 
-							</SELECT>
+							</SELECT> <input name="b1" type="submit" value="chercher" class="sansLabel" />    
                 </div>
                 <div id="mySelectAdresse">
                                <SELECT name="Adresse" maxlength="20">
@@ -41,7 +42,7 @@
 
         				</c:forEach>
 
-							</SELECT>              
+							</SELECT> <input name="b1" type="submit" value="chercher" class="sansLabel" />                  
 							  </div>
                                 <div id="mySelectNom">
                                 <SELECT name="Nom" maxlength="20">
@@ -51,11 +52,19 @@
 
         				</c:forEach>
 
-							</SELECT>                </div>
+							</SELECT>           
+							 <input name="b1" type="submit" value="chercher" class="sansLabel" />      </div>         
+							
+							
+							<br>
+                <input id="annonce" name="annonce" value="" size="20" maxlength="20" /> 							        
+                 <input name="b1" type="submit" value="chercher2" class="sansLabel" />      </div>         
+                
+					 <br>
+							
                 <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
                 				 <br />
                 
-                <input type="submit" value="chercher" class="sansLabel" />
         </form>
 
 

@@ -241,6 +241,89 @@ public class firstPageClient2 extends HttpServlet {
 		
 		String TypeRecherche = (String) request.getParameter("rechercheType");
 		AnnuaireProxy myProxy = new AnnuaireProxy();
+		
+		String button = (String) request.getParameter("b1");
+		System.out.println("TROUVE button : "+ button);
+
+		if(button.equals("chercher2")){
+			
+		
+			if(TypeRecherche.equals("nom")){
+				String nom = (String) request.getParameter("annonce");
+				System.out.println("nom : " +nom );
+			 	String ListeAnnoncesNom = myProxy.viewAllAnnonceByNom(nom);
+			 	
+				List<Annonce> tabCat = new ArrayList<Annonce>();
+
+			
+				
+				if (!ListeAnnoncesNom.isEmpty()){
+					
+					
+					DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+					DocumentBuilder db = null;
+
+					try {
+						db = dbf.newDocumentBuilder();
+					} catch (ParserConfigurationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					InputSource is = new InputSource();
+
+					
+					// A DECOMENTER DES QUE LA FONCTION EST RAJOUTEE
+					
+				 	is.setCharacterStream(new StringReader(ListeAnnoncesNom));
+
+					org.w3c.dom.Document doc;
+					try {
+						doc = db.parse(is);
+
+						
+						NodeList nList = doc.getElementsByTagName("annonce");
+
+						for (int temp = 0; temp < nList.getLength(); temp++) {
+
+							Node nNode = nList.item(temp);
+							
+							System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+							if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+								Element eElement = (Element) nNode;
+								tabCat.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel")));
+
+
+							}
+
+						}
+						System.out.println("TROUVE TAB : "+ tabCat);
+
+						request.setAttribute("listeAnn", tabCat);
+						this.getServletContext().getRequestDispatcher(VUE).forward(request, response);	
+
+						
+					} catch (SAXException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					
+					
+					
+				}
+					
+					
+					
+					
+				}
+				
+				
+				
+			 	
+			}
+			
+			
+		}else{
 
 		// Requete le webservice pour ajouter une catégorie
 		System.out.println("TROUVE TAB : "+ TypeRecherche);
@@ -311,6 +394,7 @@ public class firstPageClient2 extends HttpServlet {
 
 			Categorie catt = new Categorie(0,"new");
 			String ValeurDonnee = (String) request.getParameter("Categorie");
+			
 
 			String cat = myProxy.getCategorieByString(ValeurDonnee);
 			System.out.println("TROUVE TAB : "+ ValeurDonnee);
@@ -425,9 +509,11 @@ public class firstPageClient2 extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
+		}
 	
 	
-	}
 		
 			
 		if(TypeRecherche.equals("adresse")){
@@ -493,7 +579,7 @@ public class firstPageClient2 extends HttpServlet {
 			
 		}
 			
-			
+		}	
 			
 	}
 
