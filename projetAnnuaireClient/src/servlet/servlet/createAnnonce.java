@@ -234,7 +234,14 @@ public class createAnnonce extends HttpServlet {
 
 		myProxy.createAnnonce(nouvelleAnn, category_id, telephone, adresse_id);
 		
-		doGet(request, response);
+	//	doGet(request, response);
+		
+		
+	     
+  String destinationBlockAccount  ="./gestionAnnonce";
+  response.sendRedirect(response.encodeRedirectURL(destinationBlockAccount));
+  
+
 	}
 
 }
