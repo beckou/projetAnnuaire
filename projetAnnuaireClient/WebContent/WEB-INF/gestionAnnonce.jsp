@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>GestionAnnonce</title>
+		<link type="text/css" rel="stylesheet" href="<c:url value="/inc/form.css"/>" />   
+
 </head>
 <body>  
 
@@ -30,7 +32,7 @@
         <tr>
             <th>Annonce ID</th>
             <th>Annonce Name</th>
-             <th>Category ID</th>
+             <th>Categorie</th>
                     <th>Adresse ID</th>
                       <th>Tel</th>
           

@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>CreateCategorie</title>
+		<link type="text/css" rel="stylesheet" href="<c:url value="/inc/form.css"/>" />   
+
 </head>
 <body>   
 

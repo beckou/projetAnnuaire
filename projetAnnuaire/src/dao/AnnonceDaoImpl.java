@@ -304,6 +304,11 @@ public class AnnonceDaoImpl implements AnnonceDao{
           ResultSet rs = stmt.executeQuery(query);
           while (rs.next()) {
 	    	  cat = map( rs );
+	    	  String nameCate = getCategorieName(rs.getLong( "idCategorie" ) );
+
+        	  System.out.println(nameCate);
+        	  cat.setNameCategorie(nameCate);
+	    	  
 	          list.add(cat);
           }
           rs.close();
@@ -349,6 +354,10 @@ public class AnnonceDaoImpl implements AnnonceDao{
           ResultSet rs = stmt.executeQuery(query);
           while (rs.next()) {
 	    	  cat = map( rs );
+	    	  String nameCate = getCategorieName(rs.getLong( "idCategorie" ) );
+
+        	  System.out.println(nameCate);
+        	  cat.setNameCategorie(nameCate);
 	          list.add(cat);
           }
           rs.close();
@@ -425,6 +434,10 @@ public class AnnonceDaoImpl implements AnnonceDao{
           ResultSet rs = stmt.executeQuery(query);
           while (rs.next()) {
 	    	  cat = map( rs );
+	    	  String nameCate = getCategorieName(rs.getLong( "idCategorie" ) );
+
+        	  System.out.println(nameCate);
+        	  cat.setNameCategorie(nameCate);
 	          list.add(cat);
           }
           rs.close();

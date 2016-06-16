@@ -17,7 +17,7 @@
                 <p>Vous pouvez rechercher vos annonces par adresse, catégorie ou par nom:  </p>
                 <br />
 			
- 				 <input type="radio" name="rechercheType" onclick="handleClick(this)" value="adresse" > Adresse<br>
+ 				 <input type="radio" name="rechercheType" onclick="handleClick(this)" value="adresse"  checked="checked" > Adresse<br>
 				 <input type="radio" name="rechercheType" onclick="handleClick(this)" value="categorie"> Catégorie<br>
 				 <input type="radio" name="rechercheType" onclick="handleClick(this)" value="nom"> Nom<br>
 				 
@@ -75,7 +75,7 @@
         <tr>
             <th>Annonce ID</th>
             <th>Annonce Name</th>
-             <th>Category ID</th>
+             <th>Categorie</th>
                     <th>Adresse ID</th>
                       <th>Tel</th>
         
@@ -85,7 +85,7 @@
             <tr>
                 <td>${annonce.id}</td>
                 <td>${annonce.name}</td>
-                <td>${annonce.category}</td>
+                <td>${annonce.nameCategorie}</td>
                 <td>${annonce.idAdresse}</td>
                 <td>${annonce.tel}</td>
 
