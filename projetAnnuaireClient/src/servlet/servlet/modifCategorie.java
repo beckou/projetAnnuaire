@@ -114,7 +114,10 @@ public class modifCategorie extends HttpServlet {
 		myProxy.modifyCategorie(idCat, nomCat);
 		
 		
-		this.getServletContext().getRequestDispatcher(VUE2).forward(request, response);
+		//this.getServletContext().getRequestDispatcher(VUE2).forward(request, response);
+		
+		  String destinationBlockAccount  ="./gestionCategorie";
+	       response.sendRedirect(response.encodeRedirectURL(destinationBlockAccount));
 	}
 
 }
