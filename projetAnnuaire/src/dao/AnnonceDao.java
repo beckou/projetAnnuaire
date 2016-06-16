@@ -22,6 +22,7 @@ public interface AnnonceDao {
 
 	Annonce trouver( Integer id_Annonce ) throws DAOException;
 
+	public   String getCategorieName(Long id);
 	
 	List<Annonce> viewAllAnnonce();
 

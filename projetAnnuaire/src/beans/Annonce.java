@@ -10,6 +10,8 @@ public class Annonce {
 	private long category;
 	private Long idAdresse;
 	private String tel;
+	private String nameAdresse;
+	private String nameCategorie;
 	
 	public Annonce(){
 	
@@ -24,6 +26,7 @@ this.name = string2;
 this.category = j;
 this.idAdresse= (long) k;
 this.tel = string4;
+this.nameCategorie = string2;
 }
 
 	public String getName() {
@@ -65,6 +68,22 @@ this.tel = string4;
 	@XmlAttribute
 	public void setIdAdresse(Long idAdresse) {
 		this.idAdresse = idAdresse;
+	}
+
+	public String getNameAdresse() {
+		return nameAdresse;
+	}
+	@XmlAttribute
+	public void setNameAdresse(String nameAdresse) {
+		this.nameAdresse = nameAdresse;
+	}
+
+	public String getNameCategorie() {
+		return nameCategorie;
+	}
+	@XmlAttribute
+	public void setNameCategorie(String nameCategorie) {
+		this.nameCategorie = nameCategorie;
 	}
 	
 }

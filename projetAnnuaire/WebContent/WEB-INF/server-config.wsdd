@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -30,51 +30,51 @@
   <ns1:operation name="createCategory" qname="ns2:createCategory" soapAction="" xmlns:ns2="http://service">
    <ns1:parameter qname="ns2:newCategory" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="viewAllCategories" qname="ns3:viewAllCategories" returnQName="ns3:viewAllCategoriesReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="getCategorieByString" qname="ns4:getCategorieByString" returnQName="ns4:getCategorieByStringReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:categorie_id" type="xsd:string"/>
+  <ns1:operation name="viewAllAnnonceByCat" qname="ns3:viewAllAnnonceByCat" returnQName="ns3:viewAllAnnonceByCatReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:idCat" type="xsd:long"/>
   </ns1:operation>
-  <ns1:operation name="getAdresseByString" qname="ns5:getAdresseByString" returnQName="ns5:getAdresseByStringReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:rue" type="xsd:string"/>
-   <ns1:parameter qname="ns5:ville" type="xsd:string"/>
-   <ns1:parameter qname="ns5:cp" type="xsd:string"/>
+  <ns1:operation name="viewAllAnnonceByAdr" qname="ns4:viewAllAnnonceByAdr" returnQName="ns4:viewAllAnnonceByAdrReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:idAdr" type="xsd:long"/>
   </ns1:operation>
-  <ns1:operation name="viewAllAnnonceByAdr" qname="ns6:viewAllAnnonceByAdr" returnQName="ns6:viewAllAnnonceByAdrReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns6:idAdr" type="xsd:long"/>
+  <ns1:operation name="viewAllAnnonceByNom" qname="ns5:viewAllAnnonceByNom" returnQName="ns5:viewAllAnnonceByNomReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:Nom" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="viewAllAnnonceByNom" qname="ns7:viewAllAnnonceByNom" returnQName="ns7:viewAllAnnonceByNomReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns7:Nom" type="xsd:string"/>
+  <ns1:operation name="getCategorieByString" qname="ns6:getCategorieByString" returnQName="ns6:getCategorieByStringReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:categorie_id" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="viewAllAnnonceByCat" qname="ns8:viewAllAnnonceByCat" returnQName="ns8:viewAllAnnonceByCatReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns8:idCat" type="xsd:long"/>
+  <ns1:operation name="getAdresseByString" qname="ns7:getAdresseByString" returnQName="ns7:getAdresseByStringReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:rue" type="xsd:string"/>
+   <ns1:parameter qname="ns7:ville" type="xsd:string"/>
+   <ns1:parameter qname="ns7:cp" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="delCategorie" qname="ns9:delCategorie" soapAction="" xmlns:ns9="http://service">
-   <ns1:parameter qname="ns9:categorie_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="viewAllCategories" qname="ns8:viewAllCategories" returnQName="ns8:viewAllCategoriesReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getCategorie" qname="ns9:getCategorie" returnQName="ns9:getCategorieReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:categorie_id" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="modifyCategorie" qname="ns10:modifyCategorie" soapAction="" xmlns:ns10="http://service">
-   <ns1:parameter qname="ns10:categorie_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns10:nouveau_nom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="createAdresse" qname="ns10:createAdresse" soapAction="" xmlns:ns10="http://service">
+   <ns1:parameter qname="ns10:rue" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns10:ville" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns10:cp" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="createAdresse" qname="ns11:createAdresse" soapAction="" xmlns:ns11="http://service">
-   <ns1:parameter qname="ns11:rue" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns11:ville" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns11:cp" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="delCategorie" qname="ns11:delCategorie" soapAction="" xmlns:ns11="http://service">
+   <ns1:parameter qname="ns11:categorie_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getCategorie" qname="ns12:getCategorie" returnQName="ns12:getCategorieReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns12:categorie_id" type="xsd:int"/>
+  <ns1:operation name="delAnnonce" qname="ns12:delAnnonce" soapAction="" xmlns:ns12="http://service">
+   <ns1:parameter qname="ns12:annonce_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="viewAllAnnonce" qname="ns13:viewAllAnnonce" returnQName="ns13:viewAllAnnonceReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:operation name="createAnnonce" qname="ns14:createAnnonce" soapAction="" xmlns:ns14="http://service">
-   <ns1:parameter qname="ns14:nom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns14:idCat" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns14:telephone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-   <ns1:parameter qname="ns14:idAdresse" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="viewAllAdresse" qname="ns13:viewAllAdresse" returnQName="ns13:viewAllAdresseReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="viewAllAnnonce" qname="ns14:viewAllAnnonce" returnQName="ns14:viewAllAnnonceReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="createAnnonce" qname="ns15:createAnnonce" soapAction="" xmlns:ns15="http://service">
+   <ns1:parameter qname="ns15:nom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns15:idCat" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns15:telephone" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns15:idAdresse" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="delAnnonce" qname="ns15:delAnnonce" soapAction="" xmlns:ns15="http://service">
-   <ns1:parameter qname="ns15:annonce_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="modifyCategorie" qname="ns16:modifyCategorie" soapAction="" xmlns:ns16="http://service">
+   <ns1:parameter qname="ns16:categorie_id" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns16:nouveau_nom" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="viewAllAdresse" qname="ns16:viewAllAdresse" returnQName="ns16:viewAllAdresseReturn" returnType="xsd:string" soapAction="" xmlns:ns16="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  <ns1:parameter name="allowedMethods" value="add viewAllAdresse modifyCategorie getCategorie viewAllAnnonceByAdr getAdresseByString viewAllAnnonce viewAllCategories delAnnonce delCategorie createAdresse viewAllAnnonceByCat getCategorieByString viewAllAnnonceByNom createCategory createAnnonce"/>
+  <ns1:parameter name="allowedMethods" value="add viewAllAdresse getCategorie modifyCategorie viewAllAnnonceByAdr getAdresseByString viewAllAnnonce viewAllCategories delAnnonce createAdresse delCategorie viewAllAnnonceByCat getCategorieByString viewAllAnnonceByNom createCategory createAnnonce"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Annuaire"/>
   <ns1:parameter name="className" value="service.Annuaire"/>

@@ -12,6 +12,7 @@ import com.mysql.jdbc.Statement;
 import beans.Addresse;
 import beans.Annonce;
 import beans.Categorie;
+import beans.Categories;
 
 import static dao.DAOUtilitaire.initialisationRequetePreparee;
 import static dao.DAOUtilitaire.fermeturesSilencieuses;
@@ -27,7 +28,11 @@ public class AnnonceDaoImpl implements AnnonceDao{
     private static final String SQL_SELECT_PAR_ADRESSE = "SELECT SQL_CALC_FOUND_ROWS * FROM Annonce WHERE idAdresse = ?";
     private static final String SQL_MODIFY = "UPDATE Annonce SET nomAnnonce = ? telephone = ? WHERE idAnnonce = ?  ";
     private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM Annonce WHERE idAnnonce = ?";
+    private static final String SQL_GET_NOM_PAR_ID = "SELECT nomCategorie FROM Categorie WHERE idCategorie = ?";
 
+    
+    
+    
 //	idAnnonce
 //	idCategorie
 //	nomAnnonce
@@ -161,7 +166,69 @@ public class AnnonceDaoImpl implements AnnonceDao{
 	    annonce.setName(resultSet.getString( "nomAnnonce" ));
 	    annonce.setTel(resultSet.getString( "telephone" )); 
 	    annonce.setIdAdresse(resultSet.getLong( "idAdresse" ));
+	    
+
+	    
 	    return annonce;
+	}
+	
+	
+	@Override
+	 public   String getCategorieName(Long id){
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/////
+		Connection connexion = null;
+ 	    PreparedStatement preparedStatement = null;
+ 	    ResultSet resultSet = null;
+ 	    
+ 	   String name;
+
+       Statement stmt = null;
+       
+	       
+		 String query = "SELECT nomCategorie FROM Categorie WHERE idCategorie ="+ id;
+			   try {
+		  connexion = (Connection) daoFactory.getConnection();
+		   stmt = (Statement) connexion.createStatement();
+		  ResultSet rs = stmt.executeQuery(query);
+			  
+		  while (rs.next()) {
+			  
+			  name = rs.getString( "nomCategorie" );
+			  return name;
+
+		  }
+		  rs.close();
+		  
+		   
+		
+		} catch (SQLException e) {
+		  e.printStackTrace();
+		}finally
+		{
+		  try {
+		      if(stmt != null)
+		          stmt.close();
+		      if(connexion != null)
+		    	  connexion.close();
+		      } catch (SQLException e) {
+		      e.printStackTrace();
+		  }
+		}
+		
+		return null;
 	}
 
 
@@ -185,6 +252,12 @@ public class AnnonceDaoImpl implements AnnonceDao{
           ResultSet rs = stmt.executeQuery(query);
           while (rs.next()) {
         	  cat = map( rs );
+        	  
+        	  String nameCate = getCategorieName(rs.getLong( "idCategorie" ) );
+
+        	  System.out.println(nameCate);
+        	  cat.setNameCategorie(nameCate);
+        	  
 	          list.add(cat);
           }
           rs.close();

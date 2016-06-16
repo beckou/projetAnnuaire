@@ -84,114 +84,114 @@ case 20:
 break;
 case 25:
         gotMethod = true;
-        java.lang.String viewAllCategories25mtemp = sampleAnnuaireProxyid.viewAllCategories();
-if(viewAllCategories25mtemp == null){
+        String idCat_4id=  request.getParameter("idCat28");
+        long idCat_4idTemp  = Long.parseLong(idCat_4id);
+        java.lang.String viewAllAnnonceByCat25mtemp = sampleAnnuaireProxyid.viewAllAnnonceByCat(idCat_4idTemp);
+if(viewAllAnnonceByCat25mtemp == null){
 %>
-<%=viewAllCategories25mtemp %>
+<%=viewAllAnnonceByCat25mtemp %>
 <%
 }else{
-        String tempResultreturnp26 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllCategories25mtemp));
+        String tempResultreturnp26 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonceByCat25mtemp));
         %>
         <%= tempResultreturnp26 %>
         <%
 }
 break;
-case 28:
+case 30:
         gotMethod = true;
-        String categorie_id_4id=  request.getParameter("categorie_id31");
-            java.lang.String categorie_id_4idTemp = null;
-        if(!categorie_id_4id.equals("")){
-         categorie_id_4idTemp  = categorie_id_4id;
-        }
-        java.lang.String getCategorieByString28mtemp = sampleAnnuaireProxyid.getCategorieByString(categorie_id_4idTemp);
-if(getCategorieByString28mtemp == null){
+        String idAdr_5id=  request.getParameter("idAdr33");
+        long idAdr_5idTemp  = Long.parseLong(idAdr_5id);
+        java.lang.String viewAllAnnonceByAdr30mtemp = sampleAnnuaireProxyid.viewAllAnnonceByAdr(idAdr_5idTemp);
+if(viewAllAnnonceByAdr30mtemp == null){
 %>
-<%=getCategorieByString28mtemp %>
+<%=viewAllAnnonceByAdr30mtemp %>
 <%
 }else{
-        String tempResultreturnp29 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getCategorieByString28mtemp));
+        String tempResultreturnp31 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonceByAdr30mtemp));
         %>
-        <%= tempResultreturnp29 %>
+        <%= tempResultreturnp31 %>
         <%
 }
 break;
-case 33:
+case 35:
         gotMethod = true;
-        String rue_5id=  request.getParameter("rue36");
-            java.lang.String rue_5idTemp = null;
-        if(!rue_5id.equals("")){
-         rue_5idTemp  = rue_5id;
+        String nom_6id=  request.getParameter("nom38");
+            java.lang.String nom_6idTemp = null;
+        if(!nom_6id.equals("")){
+         nom_6idTemp  = nom_6id;
         }
-        String ville_6id=  request.getParameter("ville38");
-            java.lang.String ville_6idTemp = null;
-        if(!ville_6id.equals("")){
-         ville_6idTemp  = ville_6id;
-        }
-        String cp_7id=  request.getParameter("cp40");
-            java.lang.String cp_7idTemp = null;
-        if(!cp_7id.equals("")){
-         cp_7idTemp  = cp_7id;
-        }
-        java.lang.String getAdresseByString33mtemp = sampleAnnuaireProxyid.getAdresseByString(rue_5idTemp,ville_6idTemp,cp_7idTemp);
-if(getAdresseByString33mtemp == null){
+        java.lang.String viewAllAnnonceByNom35mtemp = sampleAnnuaireProxyid.viewAllAnnonceByNom(nom_6idTemp);
+if(viewAllAnnonceByNom35mtemp == null){
 %>
-<%=getAdresseByString33mtemp %>
+<%=viewAllAnnonceByNom35mtemp %>
 <%
 }else{
-        String tempResultreturnp34 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAdresseByString33mtemp));
+        String tempResultreturnp36 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonceByNom35mtemp));
         %>
-        <%= tempResultreturnp34 %>
+        <%= tempResultreturnp36 %>
         <%
 }
 break;
-case 42:
+case 40:
         gotMethod = true;
-        String idAdr_8id=  request.getParameter("idAdr45");
-        long idAdr_8idTemp  = Long.parseLong(idAdr_8id);
-        java.lang.String viewAllAnnonceByAdr42mtemp = sampleAnnuaireProxyid.viewAllAnnonceByAdr(idAdr_8idTemp);
-if(viewAllAnnonceByAdr42mtemp == null){
-%>
-<%=viewAllAnnonceByAdr42mtemp %>
-<%
-}else{
-        String tempResultreturnp43 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonceByAdr42mtemp));
-        %>
-        <%= tempResultreturnp43 %>
-        <%
-}
-break;
-case 47:
-        gotMethod = true;
-        String nom_9id=  request.getParameter("nom50");
-            java.lang.String nom_9idTemp = null;
-        if(!nom_9id.equals("")){
-         nom_9idTemp  = nom_9id;
+        String categorie_id_7id=  request.getParameter("categorie_id43");
+            java.lang.String categorie_id_7idTemp = null;
+        if(!categorie_id_7id.equals("")){
+         categorie_id_7idTemp  = categorie_id_7id;
         }
-        java.lang.String viewAllAnnonceByNom47mtemp = sampleAnnuaireProxyid.viewAllAnnonceByNom(nom_9idTemp);
-if(viewAllAnnonceByNom47mtemp == null){
+        java.lang.String getCategorieByString40mtemp = sampleAnnuaireProxyid.getCategorieByString(categorie_id_7idTemp);
+if(getCategorieByString40mtemp == null){
 %>
-<%=viewAllAnnonceByNom47mtemp %>
+<%=getCategorieByString40mtemp %>
 <%
 }else{
-        String tempResultreturnp48 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonceByNom47mtemp));
+        String tempResultreturnp41 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getCategorieByString40mtemp));
         %>
-        <%= tempResultreturnp48 %>
+        <%= tempResultreturnp41 %>
         <%
 }
 break;
-case 52:
+case 45:
         gotMethod = true;
-        String idCat_10id=  request.getParameter("idCat55");
-        long idCat_10idTemp  = Long.parseLong(idCat_10id);
-        java.lang.String viewAllAnnonceByCat52mtemp = sampleAnnuaireProxyid.viewAllAnnonceByCat(idCat_10idTemp);
-if(viewAllAnnonceByCat52mtemp == null){
+        String rue_8id=  request.getParameter("rue48");
+            java.lang.String rue_8idTemp = null;
+        if(!rue_8id.equals("")){
+         rue_8idTemp  = rue_8id;
+        }
+        String ville_9id=  request.getParameter("ville50");
+            java.lang.String ville_9idTemp = null;
+        if(!ville_9id.equals("")){
+         ville_9idTemp  = ville_9id;
+        }
+        String cp_10id=  request.getParameter("cp52");
+            java.lang.String cp_10idTemp = null;
+        if(!cp_10id.equals("")){
+         cp_10idTemp  = cp_10id;
+        }
+        java.lang.String getAdresseByString45mtemp = sampleAnnuaireProxyid.getAdresseByString(rue_8idTemp,ville_9idTemp,cp_10idTemp);
+if(getAdresseByString45mtemp == null){
 %>
-<%=viewAllAnnonceByCat52mtemp %>
+<%=getAdresseByString45mtemp %>
 <%
 }else{
-        String tempResultreturnp53 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonceByCat52mtemp));
+        String tempResultreturnp46 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAdresseByString45mtemp));
         %>
-        <%= tempResultreturnp53 %>
+        <%= tempResultreturnp46 %>
+        <%
+}
+break;
+case 54:
+        gotMethod = true;
+        java.lang.String viewAllCategories54mtemp = sampleAnnuaireProxyid.viewAllCategories();
+if(viewAllCategories54mtemp == null){
+%>
+<%=viewAllCategories54mtemp %>
+<%
+}else{
+        String tempResultreturnp55 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllCategories54mtemp));
+        %>
+        <%= tempResultreturnp55 %>
         <%
 }
 break;
@@ -199,105 +199,105 @@ case 57:
         gotMethod = true;
         String categorie_id_11id=  request.getParameter("categorie_id60");
         int categorie_id_11idTemp  = Integer.parseInt(categorie_id_11id);
-        sampleAnnuaireProxyid.delCategorie(categorie_id_11idTemp);
+        java.lang.String getCategorie57mtemp = sampleAnnuaireProxyid.getCategorie(categorie_id_11idTemp);
+if(getCategorie57mtemp == null){
+%>
+<%=getCategorie57mtemp %>
+<%
+}else{
+        String tempResultreturnp58 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getCategorie57mtemp));
+        %>
+        <%= tempResultreturnp58 %>
+        <%
+}
 break;
 case 62:
         gotMethod = true;
-        String categorie_id_12id=  request.getParameter("categorie_id65");
-        int categorie_id_12idTemp  = Integer.parseInt(categorie_id_12id);
-        String nouveau_nom_13id=  request.getParameter("nouveau_nom67");
-            java.lang.String nouveau_nom_13idTemp = null;
-        if(!nouveau_nom_13id.equals("")){
-         nouveau_nom_13idTemp  = nouveau_nom_13id;
+        String rue_12id=  request.getParameter("rue65");
+            java.lang.String rue_12idTemp = null;
+        if(!rue_12id.equals("")){
+         rue_12idTemp  = rue_12id;
         }
-        sampleAnnuaireProxyid.modifyCategorie(categorie_id_12idTemp,nouveau_nom_13idTemp);
+        String ville_13id=  request.getParameter("ville67");
+            java.lang.String ville_13idTemp = null;
+        if(!ville_13id.equals("")){
+         ville_13idTemp  = ville_13id;
+        }
+        String cp_14id=  request.getParameter("cp69");
+            java.lang.String cp_14idTemp = null;
+        if(!cp_14id.equals("")){
+         cp_14idTemp  = cp_14id;
+        }
+        sampleAnnuaireProxyid.createAdresse(rue_12idTemp,ville_13idTemp,cp_14idTemp);
 break;
-case 69:
+case 71:
         gotMethod = true;
-        String rue_14id=  request.getParameter("rue72");
-            java.lang.String rue_14idTemp = null;
-        if(!rue_14id.equals("")){
-         rue_14idTemp  = rue_14id;
-        }
-        String ville_15id=  request.getParameter("ville74");
-            java.lang.String ville_15idTemp = null;
-        if(!ville_15id.equals("")){
-         ville_15idTemp  = ville_15id;
-        }
-        String cp_16id=  request.getParameter("cp76");
-            java.lang.String cp_16idTemp = null;
-        if(!cp_16id.equals("")){
-         cp_16idTemp  = cp_16id;
-        }
-        sampleAnnuaireProxyid.createAdresse(rue_14idTemp,ville_15idTemp,cp_16idTemp);
+        String categorie_id_15id=  request.getParameter("categorie_id74");
+        int categorie_id_15idTemp  = Integer.parseInt(categorie_id_15id);
+        sampleAnnuaireProxyid.delCategorie(categorie_id_15idTemp);
 break;
-case 78:
+case 76:
         gotMethod = true;
-        String categorie_id_17id=  request.getParameter("categorie_id81");
-        int categorie_id_17idTemp  = Integer.parseInt(categorie_id_17id);
-        java.lang.String getCategorie78mtemp = sampleAnnuaireProxyid.getCategorie(categorie_id_17idTemp);
-if(getCategorie78mtemp == null){
+        String annonce_id_16id=  request.getParameter("annonce_id79");
+        int annonce_id_16idTemp  = Integer.parseInt(annonce_id_16id);
+        sampleAnnuaireProxyid.delAnnonce(annonce_id_16idTemp);
+break;
+case 81:
+        gotMethod = true;
+        java.lang.String viewAllAdresse81mtemp = sampleAnnuaireProxyid.viewAllAdresse();
+if(viewAllAdresse81mtemp == null){
 %>
-<%=getCategorie78mtemp %>
+<%=viewAllAdresse81mtemp %>
 <%
 }else{
-        String tempResultreturnp79 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getCategorie78mtemp));
+        String tempResultreturnp82 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAdresse81mtemp));
         %>
-        <%= tempResultreturnp79 %>
+        <%= tempResultreturnp82 %>
         <%
 }
 break;
-case 83:
+case 84:
         gotMethod = true;
-        java.lang.String viewAllAnnonce83mtemp = sampleAnnuaireProxyid.viewAllAnnonce();
-if(viewAllAnnonce83mtemp == null){
+        java.lang.String viewAllAnnonce84mtemp = sampleAnnuaireProxyid.viewAllAnnonce();
+if(viewAllAnnonce84mtemp == null){
 %>
-<%=viewAllAnnonce83mtemp %>
+<%=viewAllAnnonce84mtemp %>
 <%
 }else{
-        String tempResultreturnp84 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonce83mtemp));
+        String tempResultreturnp85 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAnnonce84mtemp));
         %>
-        <%= tempResultreturnp84 %>
+        <%= tempResultreturnp85 %>
         <%
 }
 break;
-case 86:
+case 87:
         gotMethod = true;
-        String nom_18id=  request.getParameter("nom89");
-            java.lang.String nom_18idTemp = null;
-        if(!nom_18id.equals("")){
-         nom_18idTemp  = nom_18id;
+        String nom_17id=  request.getParameter("nom90");
+            java.lang.String nom_17idTemp = null;
+        if(!nom_17id.equals("")){
+         nom_17idTemp  = nom_17id;
         }
-        String idCat_19id=  request.getParameter("idCat91");
-        int idCat_19idTemp  = Integer.parseInt(idCat_19id);
-        String telephone_20id=  request.getParameter("telephone93");
-            java.lang.String telephone_20idTemp = null;
-        if(!telephone_20id.equals("")){
-         telephone_20idTemp  = telephone_20id;
+        String idCat_18id=  request.getParameter("idCat92");
+        int idCat_18idTemp  = Integer.parseInt(idCat_18id);
+        String telephone_19id=  request.getParameter("telephone94");
+            java.lang.String telephone_19idTemp = null;
+        if(!telephone_19id.equals("")){
+         telephone_19idTemp  = telephone_19id;
         }
-        String idAdresse_21id=  request.getParameter("idAdresse95");
-        long idAdresse_21idTemp  = Long.parseLong(idAdresse_21id);
-        sampleAnnuaireProxyid.createAnnonce(nom_18idTemp,idCat_19idTemp,telephone_20idTemp,idAdresse_21idTemp);
+        String idAdresse_20id=  request.getParameter("idAdresse96");
+        long idAdresse_20idTemp  = Long.parseLong(idAdresse_20id);
+        sampleAnnuaireProxyid.createAnnonce(nom_17idTemp,idCat_18idTemp,telephone_19idTemp,idAdresse_20idTemp);
 break;
-case 97:
+case 98:
         gotMethod = true;
-        String annonce_id_22id=  request.getParameter("annonce_id100");
-        int annonce_id_22idTemp  = Integer.parseInt(annonce_id_22id);
-        sampleAnnuaireProxyid.delAnnonce(annonce_id_22idTemp);
-break;
-case 102:
-        gotMethod = true;
-        java.lang.String viewAllAdresse102mtemp = sampleAnnuaireProxyid.viewAllAdresse();
-if(viewAllAdresse102mtemp == null){
-%>
-<%=viewAllAdresse102mtemp %>
-<%
-}else{
-        String tempResultreturnp103 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(viewAllAdresse102mtemp));
-        %>
-        <%= tempResultreturnp103 %>
-        <%
-}
+        String categorie_id_21id=  request.getParameter("categorie_id101");
+        int categorie_id_21idTemp  = Integer.parseInt(categorie_id_21id);
+        String nouveau_nom_22id=  request.getParameter("nouveau_nom103");
+            java.lang.String nouveau_nom_22idTemp = null;
+        if(!nouveau_nom_22id.equals("")){
+         nouveau_nom_22idTemp  = nouveau_nom_22id;
+        }
+        sampleAnnuaireProxyid.modifyCategorie(categorie_id_21idTemp,nouveau_nom_22idTemp);
 break;
 }
 } catch (Exception e) { 

@@ -56,22 +56,10 @@ public class AnnuaireProxy implements service.Annuaire {
     annuaire.createCategory(newCategory);
   }
   
-  public java.lang.String viewAllCategories() throws java.rmi.RemoteException{
+  public java.lang.String viewAllAnnonceByCat(long idCat) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    return annuaire.viewAllCategories();
-  }
-  
-  public java.lang.String getCategorieByString(java.lang.String categorie_id) throws java.rmi.RemoteException{
-    if (annuaire == null)
-      _initAnnuaireProxy();
-    return annuaire.getCategorieByString(categorie_id);
-  }
-  
-  public java.lang.String getAdresseByString(java.lang.String rue, java.lang.String ville, java.lang.String cp) throws java.rmi.RemoteException{
-    if (annuaire == null)
-      _initAnnuaireProxy();
-    return annuaire.getAdresseByString(rue, ville, cp);
+    return annuaire.viewAllAnnonceByCat(idCat);
   }
   
   public java.lang.String viewAllAnnonceByAdr(long idAdr) throws java.rmi.RemoteException{
@@ -86,22 +74,28 @@ public class AnnuaireProxy implements service.Annuaire {
     return annuaire.viewAllAnnonceByNom(nom);
   }
   
-  public java.lang.String viewAllAnnonceByCat(long idCat) throws java.rmi.RemoteException{
+  public java.lang.String getCategorieByString(java.lang.String categorie_id) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    return annuaire.viewAllAnnonceByCat(idCat);
+    return annuaire.getCategorieByString(categorie_id);
   }
   
-  public void delCategorie(int categorie_id) throws java.rmi.RemoteException{
+  public java.lang.String getAdresseByString(java.lang.String rue, java.lang.String ville, java.lang.String cp) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    annuaire.delCategorie(categorie_id);
+    return annuaire.getAdresseByString(rue, ville, cp);
   }
   
-  public void modifyCategorie(int categorie_id, java.lang.String nouveau_nom) throws java.rmi.RemoteException{
+  public java.lang.String viewAllCategories() throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    annuaire.modifyCategorie(categorie_id, nouveau_nom);
+    return annuaire.viewAllCategories();
+  }
+  
+  public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.getCategorie(categorie_id);
   }
   
   public void createAdresse(java.lang.String rue, java.lang.String ville, java.lang.String cp) throws java.rmi.RemoteException{
@@ -110,10 +104,22 @@ public class AnnuaireProxy implements service.Annuaire {
     annuaire.createAdresse(rue, ville, cp);
   }
   
-  public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException{
+  public void delCategorie(int categorie_id) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    return annuaire.getCategorie(categorie_id);
+    annuaire.delCategorie(categorie_id);
+  }
+  
+  public void delAnnonce(int annonce_id) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    annuaire.delAnnonce(annonce_id);
+  }
+  
+  public java.lang.String viewAllAdresse() throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.viewAllAdresse();
   }
   
   public java.lang.String viewAllAnnonce() throws java.rmi.RemoteException{
@@ -128,16 +134,10 @@ public class AnnuaireProxy implements service.Annuaire {
     annuaire.createAnnonce(nom, idCat, telephone, idAdresse);
   }
   
-  public void delAnnonce(int annonce_id) throws java.rmi.RemoteException{
+  public void modifyCategorie(int categorie_id, java.lang.String nouveau_nom) throws java.rmi.RemoteException{
     if (annuaire == null)
       _initAnnuaireProxy();
-    annuaire.delAnnonce(annonce_id);
-  }
-  
-  public java.lang.String viewAllAdresse() throws java.rmi.RemoteException{
-    if (annuaire == null)
-      _initAnnuaireProxy();
-    return annuaire.viewAllAdresse();
+    annuaire.modifyCategorie(categorie_id, nouveau_nom);
   }
   
   

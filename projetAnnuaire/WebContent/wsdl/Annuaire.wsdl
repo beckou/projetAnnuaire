@@ -29,13 +29,45 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="createCategoryResponse">
     <complexType/>
    </element>
-   <element name="viewAllCategories">
-    <complexType/>
-   </element>
-   <element name="viewAllCategoriesResponse">
+   <element name="viewAllAnnonceByCat">
     <complexType>
      <sequence>
-      <element name="viewAllCategoriesReturn" type="xsd:string"/>
+      <element name="idCat" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllAnnonceByCatResponse">
+    <complexType>
+     <sequence>
+      <element name="viewAllAnnonceByCatReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllAnnonceByAdr">
+    <complexType>
+     <sequence>
+      <element name="idAdr" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllAnnonceByAdrResponse">
+    <complexType>
+     <sequence>
+      <element name="viewAllAnnonceByAdrReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllAnnonceByNom">
+    <complexType>
+     <sequence>
+      <element name="Nom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viewAllAnnonceByNomResponse">
+    <complexType>
+     <sequence>
+      <element name="viewAllAnnonceByNomReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -69,68 +101,29 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="viewAllAnnonceByAdr">
+   <element name="viewAllCategories">
+    <complexType/>
+   </element>
+   <element name="viewAllCategoriesResponse">
     <complexType>
      <sequence>
-      <element name="idAdr" type="xsd:long"/>
+      <element name="viewAllCategoriesReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="viewAllAnnonceByAdrResponse">
-    <complexType>
-     <sequence>
-      <element name="viewAllAnnonceByAdrReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllAnnonceByNom">
-    <complexType>
-     <sequence>
-      <element name="Nom" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllAnnonceByNomResponse">
-    <complexType>
-     <sequence>
-      <element name="viewAllAnnonceByNomReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllAnnonceByCat">
-    <complexType>
-     <sequence>
-      <element name="idCat" type="xsd:long"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="viewAllAnnonceByCatResponse">
-    <complexType>
-     <sequence>
-      <element name="viewAllAnnonceByCatReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="delCategorie">
+   <element name="getCategorie">
     <complexType>
      <sequence>
       <element name="categorie_id" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
-   <element name="delCategorieResponse">
-    <complexType/>
-   </element>
-   <element name="modifyCategorie">
+   <element name="getCategorieResponse">
     <complexType>
      <sequence>
-      <element name="categorie_id" type="xsd:int"/>
-      <element name="nouveau_nom" type="xsd:string"/>
+      <element name="getCategorieReturn" type="xsd:string"/>
      </sequence>
     </complexType>
-   </element>
-   <element name="modifyCategorieResponse">
-    <complexType/>
    </element>
    <element name="createAdresse">
     <complexType>
@@ -144,17 +137,33 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="createAdresseResponse">
     <complexType/>
    </element>
-   <element name="getCategorie">
+   <element name="delCategorie">
     <complexType>
      <sequence>
       <element name="categorie_id" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
-   <element name="getCategorieResponse">
+   <element name="delCategorieResponse">
+    <complexType/>
+   </element>
+   <element name="delAnnonce">
     <complexType>
      <sequence>
-      <element name="getCategorieReturn" type="xsd:string"/>
+      <element name="annonce_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="delAnnonceResponse">
+    <complexType/>
+   </element>
+   <element name="viewAllAdresse">
+    <complexType/>
+   </element>
+   <element name="viewAllAdresseResponse">
+    <complexType>
+     <sequence>
+      <element name="viewAllAdresseReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -181,25 +190,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="createAnnonceResponse">
     <complexType/>
    </element>
-   <element name="delAnnonce">
+   <element name="modifyCategorie">
     <complexType>
      <sequence>
-      <element name="annonce_id" type="xsd:int"/>
+      <element name="categorie_id" type="xsd:int"/>
+      <element name="nouveau_nom" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="delAnnonceResponse">
+   <element name="modifyCategorieResponse">
     <complexType/>
-   </element>
-   <element name="viewAllAdresse">
-    <complexType/>
-   </element>
-   <element name="viewAllAdresseResponse">
-    <complexType>
-     <sequence>
-      <element name="viewAllAdresseReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
    </element>
   </schema>
  </wsdl:types>
@@ -252,17 +252,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="delCategorieResponse">
+   <wsdl:message name="createAdresseResponse">
 
-      <wsdl:part element="impl:delCategorieResponse" name="parameters">
+      <wsdl:part element="impl:createAdresseResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="createAdresseResponse">
+   <wsdl:message name="delCategorieResponse">
 
-      <wsdl:part element="impl:createAdresseResponse" name="parameters">
+      <wsdl:part element="impl:delCategorieResponse" name="parameters">
 
       </wsdl:part>
 
@@ -486,37 +486,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllCategories">
+      <wsdl:operation name="viewAllAnnonceByCat">
 
-         <wsdl:input message="impl:viewAllCategoriesRequest" name="viewAllCategoriesRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:viewAllCategoriesResponse" name="viewAllCategoriesResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getCategorieByString">
-
-         <wsdl:input message="impl:getCategorieByStringRequest" name="getCategorieByStringRequest">
+         <wsdl:input message="impl:viewAllAnnonceByCatRequest" name="viewAllAnnonceByCatRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getCategorieByStringResponse" name="getCategorieByStringResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAdresseByString">
-
-         <wsdl:input message="impl:getAdresseByStringRequest" name="getAdresseByStringRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getAdresseByStringResponse" name="getAdresseByStringResponse">
+         <wsdl:output message="impl:viewAllAnnonceByCatResponse" name="viewAllAnnonceByCatResponse">
 
        </wsdl:output>
 
@@ -546,37 +522,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllAnnonceByCat">
+      <wsdl:operation name="getCategorieByString">
 
-         <wsdl:input message="impl:viewAllAnnonceByCatRequest" name="viewAllAnnonceByCatRequest">
+         <wsdl:input message="impl:getCategorieByStringRequest" name="getCategorieByStringRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:viewAllAnnonceByCatResponse" name="viewAllAnnonceByCatResponse">
+         <wsdl:output message="impl:getCategorieByStringResponse" name="getCategorieByStringResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="delCategorie">
+      <wsdl:operation name="getAdresseByString">
 
-         <wsdl:input message="impl:delCategorieRequest" name="delCategorieRequest">
+         <wsdl:input message="impl:getAdresseByStringRequest" name="getAdresseByStringRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:delCategorieResponse" name="delCategorieResponse">
+         <wsdl:output message="impl:getAdresseByStringResponse" name="getAdresseByStringResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="modifyCategorie">
+      <wsdl:operation name="viewAllCategories">
 
-         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
+         <wsdl:input message="impl:viewAllCategoriesRequest" name="viewAllCategoriesRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
+         <wsdl:output message="impl:viewAllCategoriesResponse" name="viewAllCategoriesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorie">
+
+         <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCategorieResponse" name="getCategorieResponse">
 
        </wsdl:output>
 
@@ -594,13 +582,37 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getCategorie">
+      <wsdl:operation name="delCategorie">
 
-         <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
+         <wsdl:input message="impl:delCategorieRequest" name="delCategorieRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:getCategorieResponse" name="getCategorieResponse">
+         <wsdl:output message="impl:delCategorieResponse" name="delCategorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="delAnnonce">
+
+         <wsdl:input message="impl:delAnnonceRequest" name="delAnnonceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:delAnnonceResponse" name="delAnnonceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewAllAdresse">
+
+         <wsdl:input message="impl:viewAllAdresseRequest" name="viewAllAdresseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viewAllAdresseResponse" name="viewAllAdresseResponse">
 
        </wsdl:output>
 
@@ -630,25 +642,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="delAnnonce">
+      <wsdl:operation name="modifyCategorie">
 
-         <wsdl:input message="impl:delAnnonceRequest" name="delAnnonceRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:delAnnonceResponse" name="delAnnonceResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewAllAdresse">
-
-         <wsdl:input message="impl:viewAllAdresseRequest" name="viewAllAdresseRequest">
+         <wsdl:input message="impl:modifyCategorieRequest" name="modifyCategorieRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:viewAllAdresseResponse" name="viewAllAdresseResponse">
+         <wsdl:output message="impl:modifyCategorieResponse" name="modifyCategorieResponse">
 
        </wsdl:output>
 
@@ -696,53 +696,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllCategories">
+      <wsdl:operation name="viewAllAnnonceByCat">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="viewAllCategoriesRequest">
+         <wsdl:input name="viewAllAnnonceByCatRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="viewAllCategoriesResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getCategorieByString">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getCategorieByStringRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getCategorieByStringResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getAdresseByString">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getAdresseByStringRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getAdresseByStringResponse">
+         <wsdl:output name="viewAllAnnonceByCatResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -786,17 +750,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="viewAllAnnonceByCat">
+      <wsdl:operation name="getCategorieByString">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="viewAllAnnonceByCatRequest">
+         <wsdl:input name="getCategorieByStringRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="viewAllAnnonceByCatResponse">
+         <wsdl:output name="getCategorieByStringResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -804,17 +768,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="delCategorie">
+      <wsdl:operation name="getAdresseByString">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="delCategorieRequest">
+         <wsdl:input name="getAdresseByStringRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="delCategorieResponse">
+         <wsdl:output name="getAdresseByStringResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -822,17 +786,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="modifyCategorie">
+      <wsdl:operation name="viewAllCategories">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="modifyCategorieRequest">
+         <wsdl:input name="viewAllCategoriesRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="modifyCategorieResponse">
+         <wsdl:output name="viewAllCategoriesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCategorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -858,17 +840,53 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getCategorie">
+      <wsdl:operation name="delCategorie">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="getCategorieRequest">
+         <wsdl:input name="delCategorieRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="getCategorieResponse">
+         <wsdl:output name="delCategorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="delAnnonce">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="delAnnonceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="delAnnonceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="viewAllAdresse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viewAllAdresseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viewAllAdresseResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -912,35 +930,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="delAnnonce">
+      <wsdl:operation name="modifyCategorie">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="delAnnonceRequest">
+         <wsdl:input name="modifyCategorieRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="delAnnonceResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="viewAllAdresse">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="viewAllAdresseRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="viewAllAdresseResponse">
+         <wsdl:output name="modifyCategorieResponse">
 
             <wsdlsoap:body use="literal"/>
 

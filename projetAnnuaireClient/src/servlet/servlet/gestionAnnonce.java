@@ -104,7 +104,7 @@ public class gestionAnnonce extends HttpServlet {
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 					Element eElement = (Element) nNode;
-					tabCat.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel")));
+					tabCat.add(new Annonce(Integer.parseInt(eElement.getAttribute("id")), eElement.getAttribute("name"),Integer.parseInt(eElement.getAttribute("category")),Integer.parseInt(eElement.getAttribute("idAdresse")),eElement.getAttribute("tel"), eElement.getAttribute("nameCategorie")));
 
 				}
 

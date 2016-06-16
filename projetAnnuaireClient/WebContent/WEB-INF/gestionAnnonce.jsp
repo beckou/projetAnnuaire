@@ -42,7 +42,7 @@
             <tr>
                 <td>${annonce.id}</td>
                 <td>${annonce.name}</td>
-                <td>${annonce.category}</td>
+                <td>${annonce.nameCategorie}</td>
                 <td>${annonce.idAdresse}</td>
                 <td>${annonce.tel}</td>
             	<td>        <form method="get" action="modifAnnonce">
