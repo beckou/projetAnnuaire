@@ -12,7 +12,7 @@ public interface AnnonceDao {
 	  
 	void creer( Annonce annonce ) throws DAOException;
   
-	void modifier (long AnnonceId,String name, String tel ) throws DAOException;
+	void modifier (long AnnonceId,String name, String tel, long idCat ) throws DAOException;
 	
 	void supprimer ( long id) throws DAOException;
 	

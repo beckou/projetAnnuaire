@@ -16,6 +16,10 @@ public interface Annuaire extends java.rmi.Remote {
     public java.lang.String getCategorieByString(java.lang.String categorie_id) throws java.rmi.RemoteException;
     public java.lang.String getAdresseByString(java.lang.String rue, java.lang.String ville, java.lang.String cp) throws java.rmi.RemoteException;
     public java.lang.String viewAllCategories() throws java.rmi.RemoteException;
+    public void modifyAdresse(int adresse_id, java.lang.String nouveau_rue, java.lang.String nouveau_ville, java.lang.String nouveau_cp) throws java.rmi.RemoteException;
+    public void modifyAnnonce(int annonce_id, java.lang.String nouveau_nom, java.lang.String nouveau_tel, int idCat) throws java.rmi.RemoteException;
+    public java.lang.String getAnnonce(int categorie_id) throws java.rmi.RemoteException;
+    public java.lang.String getAdresseByID(int ID) throws java.rmi.RemoteException;
     public java.lang.String getCategorie(int categorie_id) throws java.rmi.RemoteException;
     public void createAdresse(java.lang.String rue, java.lang.String ville, java.lang.String cp) throws java.rmi.RemoteException;
     public void delCategorie(int categorie_id) throws java.rmi.RemoteException;

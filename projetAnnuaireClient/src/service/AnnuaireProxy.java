@@ -140,5 +140,29 @@ public class AnnuaireProxy implements service.Annuaire {
     annuaire.modifyCategorie(categorie_id, nouveau_nom);
   }
   
+  public java.lang.String getAnnonce(int categorie_id) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.getAnnonce(categorie_id);
+  }
+  
+  public java.lang.String getAdresseByID(int ID) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    return annuaire.getAdresseByID(ID);
+  }
+  
+  public void modifyAdresse(int adresse_id, java.lang.String nouveau_rue, java.lang.String nouveau_ville, java.lang.String nouveau_cp) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    annuaire.modifyAdresse(adresse_id, nouveau_rue, nouveau_ville, nouveau_cp);
+  }
+  
+  public void modifyAnnonce(int annonce_id, java.lang.String nouveau_nom, java.lang.String nouveau_tel, int idCat) throws java.rmi.RemoteException{
+    if (annuaire == null)
+      _initAnnuaireProxy();
+    annuaire.modifyAnnonce(annonce_id, nouveau_nom, nouveau_tel, idCat);
+  }
+  
   
 }

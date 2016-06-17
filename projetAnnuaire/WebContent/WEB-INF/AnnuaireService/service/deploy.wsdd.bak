@@ -46,6 +46,24 @@
       </operation>
       <operation name="viewAllCategories" qname="operNS:viewAllCategories" xmlns:operNS="http://service" returnQName="retNS:viewAllCategoriesReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
+      <operation name="modifyAdresse" qname="operNS:modifyAdresse" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:adresse_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nouveau_rue" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nouveau_ville" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nouveau_cp" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="modifyAnnonce" qname="operNS:modifyAnnonce" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:annonce_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nouveau_nom" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nouveau_tel" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idCat" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAnnonce" qname="operNS:getAnnonce" xmlns:operNS="http://service" returnQName="retNS:getAnnonceReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:categorie_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAdresseByID" qname="operNS:getAdresseByID" xmlns:operNS="http://service" returnQName="retNS:getAdresseByIDReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:ID" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="getCategorie" qname="operNS:getCategorie" xmlns:operNS="http://service" returnQName="retNS:getCategorieReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:categorie_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
@@ -74,7 +92,7 @@
         <parameter qname="pns:categorie_id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:nouveau_nom" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="add viewAllAdresse getCategorie modifyCategorie viewAllAnnonceByAdr getAdresseByString viewAllAnnonce viewAllCategories delAnnonce createAdresse delCategorie viewAllAnnonceByCat getCategorieByString viewAllAnnonceByNom createCategory createAnnonce"/>
+      <parameter name="allowedMethods" value="add viewAllAdresse getCategorie modifyCategorie viewAllAnnonceByAdr getAdresseByString viewAllAnnonce viewAllCategories modifyAnnonce getAnnonce delAnnonce createAdresse delCategorie viewAllAnnonceByCat getCategorieByString modifyAdresse viewAllAnnonceByNom createCategory getAdresseByID createAnnonce"/>
 
   </service>
 </deployment>

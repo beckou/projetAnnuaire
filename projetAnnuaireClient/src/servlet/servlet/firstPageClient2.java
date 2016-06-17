@@ -248,7 +248,7 @@ public class firstPageClient2 extends HttpServlet {
 		if(button.equals("chercher2")){
 			
 			
-			if(TypeRecherche.equals("categorie")){
+		if(TypeRecherche.equals("categorie")){
 				
 
 

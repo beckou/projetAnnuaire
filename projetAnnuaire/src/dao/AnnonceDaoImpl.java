@@ -26,7 +26,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
     private static final String SQL_DELETE_PAR_ID = "DELETE FROM Annonce WHERE idAnnonce = ?";
     private static final String SQL_SELECT_PAR_CATEGORIE = "SELECT SQL_CALC_FOUND_ROWS * FROM Annonce WHERE idCategorie = ?";
     private static final String SQL_SELECT_PAR_ADRESSE = "SELECT SQL_CALC_FOUND_ROWS * FROM Annonce WHERE idAdresse = ?";
-    private static final String SQL_MODIFY = "UPDATE Annonce SET nomAnnonce = ? telephone = ? WHERE idAnnonce = ?  ";
+    private static final String SQL_MODIFY = "UPDATE Annonce SET nomAnnonce = ?, telephone = ?, idCategorie = ? WHERE idAnnonce = ?  ";
     private static final String SQL_SELECT_PAR_NOM = "SELECT * FROM Annonce WHERE idAnnonce = ?";
     private static final String SQL_GET_NOM_PAR_ID = "SELECT nomCategorie FROM Categorie WHERE idCategorie = ?";
 
@@ -84,7 +84,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
 	}
 
 	@Override
-	public void modifier(long AnnonceId, String name, String tel) throws DAOException {
+	public void modifier(long AnnonceId, String name, String tel, long idCat) throws DAOException {
 		// TODO Auto-generated method stub
 		
 		
@@ -94,7 +94,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
 
         try {
             connexion = (Connection) daoFactory.getConnection();
-            preparedStatement = initialisationRequetePreparee( connexion, SQL_MODIFY, false, name,tel, AnnonceId);
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_MODIFY, false, name,tel,idCat, AnnonceId);
             int statut = preparedStatement.executeUpdate();
             if ( statut == 0 ) {
                 throw new DAOException( "Échec de la création de la question, aucune ligne ajoutée dans la table." );
@@ -427,7 +427,7 @@ public class AnnonceDaoImpl implements AnnonceDao{
        Statement stmt = null;
        
 
-       String query = "select SQL_CALC_FOUND_ROWS * from Annonce WHERE nomAnnonce = '"+ nomAnn + "'";
+       String query = "select SQL_CALC_FOUND_ROWS * from Annonce WHERE nomAnnonce REGEXP '"+ nomAnn + "*'";
       try {
     	  connexion = (Connection) daoFactory.getConnection();
            stmt = (Statement) connexion.createStatement();

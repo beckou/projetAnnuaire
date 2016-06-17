@@ -24,6 +24,10 @@
 <LI><A HREF="Input.jsp?method=84" TARGET="inputs"> viewAllAnnonce()</A></LI>
 <LI><A HREF="Input.jsp?method=87" TARGET="inputs"> createAnnonce(java.lang.String,int,java.lang.String,long)</A></LI>
 <LI><A HREF="Input.jsp?method=98" TARGET="inputs"> modifyCategorie(int,java.lang.String)</A></LI>
+<LI><A HREF="Input.jsp?method=105" TARGET="inputs"> getAnnonce(int)</A></LI>
+<LI><A HREF="Input.jsp?method=110" TARGET="inputs"> getAdresseByID(int)</A></LI>
+<LI><A HREF="Input.jsp?method=115" TARGET="inputs"> modifyAdresse(int,java.lang.String,java.lang.String,java.lang.String)</A></LI>
+<LI><A HREF="Input.jsp?method=126" TARGET="inputs"> modifyAnnonce(int,java.lang.String,java.lang.String,int)</A></LI>
 </UL>
 </BODY>
 </HTML>

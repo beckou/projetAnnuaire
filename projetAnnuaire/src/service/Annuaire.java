@@ -114,7 +114,28 @@ public class Annuaire {
 
 	}
 	
-	
+	public String getAdresseByID(Integer ID) throws JAXBException {
+
+		Addresse adresse = adresseDAO.trouverById(ID);
+
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(Addresse.class);
+			java.io.StringWriter sw = new StringWriter();
+
+			javax.xml.bind.Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+			marshaller.marshal(adresse, sw);
+
+			return sw.toString();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "false";
+
+	}
 
 	
 	public void createCategory(String newCategory){
@@ -132,6 +153,14 @@ public class Annuaire {
 	public void modifyCategorie(int categorie_id,String nouveau_nom) {
 		 categorieDAO.modifier(categorie_id, nouveau_nom);
 		}
+	
+	public void modifyAnnonce(int annonce_id,String nouveau_nom,String nouveau_tel, int idCat) {
+		 annonceDAO.modifier(annonce_id, nouveau_nom, nouveau_tel, idCat);
+		}
+	public void modifyAdresse(int adresse_id,String nouveau_rue,String nouveau_ville,String nouveau_cp) {
+		 adresseDAO.modifier(adresse_id, nouveau_rue, nouveau_ville,nouveau_cp);
+		}
+	
 	
 	public String viewAllCategories() {
 		 List<Categorie> l_categories = categorieDAO.viewAllCategorie();
@@ -308,5 +337,30 @@ public class Annuaire {
 
 		return "false";
 }
+	
+	public String getAnnonce(int categorie_id) throws JAXBException {
+
+		Annonce annonce =annonceDAO.trouver(categorie_id);
+
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(Annonce.class);
+			java.io.StringWriter sw = new StringWriter();
+
+			javax.xml.bind.Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
+			marshaller.marshal(annonce, sw);
+
+			return sw.toString();
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "false";
+
+	}
+
+	
 	
 }

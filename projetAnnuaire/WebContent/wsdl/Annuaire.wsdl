@@ -111,6 +111,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="modifyAdresse">
+    <complexType>
+     <sequence>
+      <element name="adresse_id" type="xsd:int"/>
+      <element name="nouveau_rue" type="xsd:string"/>
+      <element name="nouveau_ville" type="xsd:string"/>
+      <element name="nouveau_cp" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyAdresseResponse">
+    <complexType/>
+   </element>
+   <element name="modifyAnnonce">
+    <complexType>
+     <sequence>
+      <element name="annonce_id" type="xsd:int"/>
+      <element name="nouveau_nom" type="xsd:string"/>
+      <element name="nouveau_tel" type="xsd:string"/>
+      <element name="idCat" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="modifyAnnonceResponse">
+    <complexType/>
+   </element>
+   <element name="getAnnonce">
+    <complexType>
+     <sequence>
+      <element name="categorie_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAnnonceResponse">
+    <complexType>
+     <sequence>
+      <element name="getAnnonceReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdresseByID">
+    <complexType>
+     <sequence>
+      <element name="ID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdresseByIDResponse">
+    <complexType>
+     <sequence>
+      <element name="getAdresseByIDReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="getCategorie">
     <complexType>
      <sequence>
@@ -252,6 +306,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="modifyAnnonceRequest">
+
+      <wsdl:part element="impl:modifyAnnonce" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="createAdresseResponse">
 
       <wsdl:part element="impl:createAdresseResponse" name="parameters">
@@ -300,6 +362,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getAnnonceResponse">
+
+      <wsdl:part element="impl:getAnnonceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getCategorieByStringResponse">
 
       <wsdl:part element="impl:getCategorieByStringResponse" name="parameters">
@@ -340,6 +410,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="modifyAdresseResponse">
+
+      <wsdl:part element="impl:modifyAdresseResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getCategorieRequest">
 
       <wsdl:part element="impl:getCategorie" name="parameters">
@@ -348,9 +426,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getAnnonceRequest">
+
+      <wsdl:part element="impl:getAnnonce" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="viewAllAnnonceByAdrResponse">
 
       <wsdl:part element="impl:viewAllAnnonceByAdrResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdresseByIDRequest">
+
+      <wsdl:part element="impl:getAdresseByID" name="parameters">
 
       </wsdl:part>
 
@@ -428,6 +522,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="modifyAnnonceResponse">
+
+      <wsdl:part element="impl:modifyAnnonceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="viewAllAdresseResponse">
 
       <wsdl:part element="impl:viewAllAdresseResponse" name="parameters">
@@ -455,6 +557,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getCategorieByStringRequest">
 
       <wsdl:part element="impl:getCategorieByString" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyAdresseRequest">
+
+      <wsdl:part element="impl:modifyAdresse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdresseByIDResponse">
+
+      <wsdl:part element="impl:getAdresseByIDResponse" name="parameters">
 
       </wsdl:part>
 
@@ -553,6 +671,54 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:viewAllCategoriesResponse" name="viewAllCategoriesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAdresse">
+
+         <wsdl:input message="impl:modifyAdresseRequest" name="modifyAdresseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyAdresseResponse" name="modifyAdresseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAnnonce">
+
+         <wsdl:input message="impl:modifyAnnonceRequest" name="modifyAnnonceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:modifyAnnonceResponse" name="modifyAnnonceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAnnonce">
+
+         <wsdl:input message="impl:getAnnonceRequest" name="getAnnonceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAnnonceResponse" name="getAnnonceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdresseByID">
+
+         <wsdl:input message="impl:getAdresseByIDRequest" name="getAdresseByIDRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAdresseByIDResponse" name="getAdresseByIDResponse">
 
        </wsdl:output>
 
@@ -797,6 +963,78 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="viewAllCategoriesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAdresse">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAdresseRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAdresseResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyAnnonce">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="modifyAnnonceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyAnnonceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAnnonce">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAnnonceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAnnonceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdresseByID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdresseByIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdresseByIDResponse">
 
             <wsdlsoap:body use="literal"/>
 

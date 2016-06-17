@@ -299,6 +299,77 @@ case 98:
         }
         sampleAnnuaireProxyid.modifyCategorie(categorie_id_21idTemp,nouveau_nom_22idTemp);
 break;
+case 105:
+        gotMethod = true;
+        String categorie_id_23id=  request.getParameter("categorie_id108");
+        int categorie_id_23idTemp  = Integer.parseInt(categorie_id_23id);
+        java.lang.String getAnnonce105mtemp = sampleAnnuaireProxyid.getAnnonce(categorie_id_23idTemp);
+if(getAnnonce105mtemp == null){
+%>
+<%=getAnnonce105mtemp %>
+<%
+}else{
+        String tempResultreturnp106 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAnnonce105mtemp));
+        %>
+        <%= tempResultreturnp106 %>
+        <%
+}
+break;
+case 110:
+        gotMethod = true;
+        String ID_24id=  request.getParameter("ID113");
+        int ID_24idTemp  = Integer.parseInt(ID_24id);
+        java.lang.String getAdresseByID110mtemp = sampleAnnuaireProxyid.getAdresseByID(ID_24idTemp);
+if(getAdresseByID110mtemp == null){
+%>
+<%=getAdresseByID110mtemp %>
+<%
+}else{
+        String tempResultreturnp111 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getAdresseByID110mtemp));
+        %>
+        <%= tempResultreturnp111 %>
+        <%
+}
+break;
+case 115:
+        gotMethod = true;
+        String adresse_id_25id=  request.getParameter("adresse_id118");
+        int adresse_id_25idTemp  = Integer.parseInt(adresse_id_25id);
+        String nouveau_rue_26id=  request.getParameter("nouveau_rue120");
+            java.lang.String nouveau_rue_26idTemp = null;
+        if(!nouveau_rue_26id.equals("")){
+         nouveau_rue_26idTemp  = nouveau_rue_26id;
+        }
+        String nouveau_ville_27id=  request.getParameter("nouveau_ville122");
+            java.lang.String nouveau_ville_27idTemp = null;
+        if(!nouveau_ville_27id.equals("")){
+         nouveau_ville_27idTemp  = nouveau_ville_27id;
+        }
+        String nouveau_cp_28id=  request.getParameter("nouveau_cp124");
+            java.lang.String nouveau_cp_28idTemp = null;
+        if(!nouveau_cp_28id.equals("")){
+         nouveau_cp_28idTemp  = nouveau_cp_28id;
+        }
+        sampleAnnuaireProxyid.modifyAdresse(adresse_id_25idTemp,nouveau_rue_26idTemp,nouveau_ville_27idTemp,nouveau_cp_28idTemp);
+break;
+case 126:
+        gotMethod = true;
+        String annonce_id_29id=  request.getParameter("annonce_id129");
+        int annonce_id_29idTemp  = Integer.parseInt(annonce_id_29id);
+        String nouveau_nom_30id=  request.getParameter("nouveau_nom131");
+            java.lang.String nouveau_nom_30idTemp = null;
+        if(!nouveau_nom_30id.equals("")){
+         nouveau_nom_30idTemp  = nouveau_nom_30id;
+        }
+        String nouveau_tel_31id=  request.getParameter("nouveau_tel133");
+            java.lang.String nouveau_tel_31idTemp = null;
+        if(!nouveau_tel_31id.equals("")){
+         nouveau_tel_31idTemp  = nouveau_tel_31id;
+        }
+        String idCat_32id=  request.getParameter("idCat135");
+        int idCat_32idTemp  = Integer.parseInt(idCat_32id);
+        sampleAnnuaireProxyid.modifyAnnonce(annonce_id_29idTemp,nouveau_nom_30idTemp,nouveau_tel_31idTemp,idCat_32idTemp);
+break;
 }
 } catch (Exception e) { 
 %>

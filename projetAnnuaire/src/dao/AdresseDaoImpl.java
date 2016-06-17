@@ -29,6 +29,8 @@ public class AdresseDaoImpl implements AdresseDao{
 	
     private static final String SQL_INSERT = "INSERT INTO Adresse (idAdresse,  rue, ville, cp) VALUES (?, ?, ?, ?)";
     private static final String SQL_SELECT_PAR_NOMB = "SELECT * FROM Adresse WHERE rue = ? AND ville = ? AND cp = ?";
+    private static final String SQL_SELECT_PAR_ID = "SELECT * FROM Adresse WHERE idAdresse =?";
+    private static final String SQL_MODIFY = "UPDATE Adresse SET rue = ?, ville = ?, cp = ? WHERE idAdresse = ?  ";
 
 //	idAdresse
 //	rue
@@ -159,6 +161,64 @@ public class AdresseDaoImpl implements AdresseDao{
  	    
  	    
  	    return list;
+	}
+
+
+
+	@Override
+	public Addresse trouverById(Integer id) throws DAOException {
+
+	 	 Connection connexion = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    Addresse adresse = null;
+
+	    try {
+	        /* Récupération d'une connexion depuis la Factory */
+	        connexion = (Connection) daoFactory.getConnection();
+	        preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_ID, false, id );
+	        resultSet = preparedStatement.executeQuery();
+	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	        if ( resultSet.next() ) {
+	        	// ligne sûrement à décommenter plus tard
+	        	
+	        	adresse = map( resultSet );
+	            
+	            
+	        }
+	    } catch ( SQLException e ) {
+	        throw new DAOException( e );
+	    } finally {
+	        fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+	    }
+
+	    return adresse;
+	}
+
+
+
+	@Override
+	public void modifier(long idAdresse, String rue, String ville, String cp) throws DAOException {
+	
+		
+		Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet valeursAutoGenerees = null;
+
+        try {
+            connexion = (Connection) daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_MODIFY, false, rue,ville,cp,idAdresse);
+            int statut = preparedStatement.executeUpdate();
+            if ( statut == 0 ) {
+                throw new DAOException( "Échec de la création de la question, aucune ligne ajoutée dans la table." );
+            }
+
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( valeursAutoGenerees, preparedStatement, connexion );
+        }
+				
 	}
 	}
 
