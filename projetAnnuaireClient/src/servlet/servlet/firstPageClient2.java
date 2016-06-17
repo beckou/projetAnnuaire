@@ -254,11 +254,14 @@ public class firstPageClient2 extends HttpServlet {
 
 				Categorie catt = new Categorie(0,"new");
 				String ValeurDonnee = (String) request.getParameter("annonce");
-				
+				System.out.println("Avant proxy");
+				System.out.println("TROUVE TAB first : "+ ValeurDonnee);
+
 
 				String cat = myProxy.getCategorieByString(ValeurDonnee);
-				System.out.println("TROUVE TAB : "+ ValeurDonnee);
+				System.out.println("Après proxy");
 
+			 	if(!cat.isEmpty()){
 
 				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 				DocumentBuilder db = null;
@@ -314,7 +317,7 @@ public class firstPageClient2 extends HttpServlet {
 				
 			 	String ListeAnnonces = myProxy.viewAllAnnonceByCat(catt.getId());
 
-
+			 	if(!ListeAnnonces.isEmpty()){
 				
 				List<Annonce> tabCat = new ArrayList<Annonce>();
 
@@ -370,7 +373,10 @@ public class firstPageClient2 extends HttpServlet {
 					e.printStackTrace();
 				}
 				
+				}
+			 	
 				
+}
 			
 				
 				

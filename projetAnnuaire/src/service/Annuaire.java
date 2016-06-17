@@ -60,6 +60,7 @@ public class Annuaire {
 
 		Categorie categorie = categorieDAO.trouverByNom(categorie_id);
 
+		if(categorie != null){
 		JAXBContext jaxbContext;
 		try {
 			jaxbContext = JAXBContext.newInstance(Categorie.class);
@@ -76,6 +77,9 @@ public class Annuaire {
 		}
 
 		return "false";
+		}else {
+			return "false";
+		}
 
 	}
 	
